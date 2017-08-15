@@ -1,0 +1,100 @@
+﻿@using Metrocare.WebUI.HtmlHelpers;
+@model Metrocare.Common.CredenciadoDto
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group" style="padding-bottom: 3px; margin-bottom: 0;">
+            <label class="control-label">Nome</label>
+            @HtmlControls.TextBox("Nome", new { @class = "form-control", @value = Model.nome, @placeholder = "Nome do Profissional", @tabindex = "1" })
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group" style="padding-bottom: 3px; margin-bottom: 0;">
+             <label class="control-label">Cpf</label>
+             @HtmlControls.TextBox("Cpf", new { @class = "form-control", @value = Model.cpf, @placeholder = "Cpf", @tabindex = "2" })
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group" style="padding-bottom: 3px; margin-bottom: 0;">
+             <label class="control-label">Rg</label>
+             @HtmlControls.TextBox("Rg", new { @class = "form-control", @value = Model.rg, @placeholder = "Rg", @tabindex = "3" })
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group" style="padding-bottom: 3px; margin-bottom: 0;">
+             <label class="control-label">Nrº do Concelho</label>
+             @HtmlControls.TextBox("nro_concelho", new { @class = "form-control", @value = Model.nro_concelho, @placeholder = "nro_concelho", @tabindex = "4" })
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="form-group" style="padding-bottom: 3px; margin-bottom: 0;">
+            <label class="control-label">Uf</label>
+            @{ 
+                var result = EInputUF.None;
+
+                foreach (var value in Enum.GetValues(typeof(EInputUF)))
+                {
+                    if (value.ToString() == Model.uf_concelho)
+                    {
+                        result = (EInputUF)value;
+                        break;
+                    }
+                }
+
+                @HtmlControls.DropDownListCustomUF("uf_concelho", result, new { @class = "form-control", @value = Model.uf_concelho, @placeholder = "Estado", @tabindex = "6" }); 
+            }
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group" style="padding-bottom: 3px; margin-bottom: 0;">
+            <label class="control-label">Concelho</label>
+            @HtmlControls.DropDownList("id_concelho_profissional", EInputModel.ConcelhoProfissional, new { @class = "form-control", @value = Model.id_concelho_profissional, @placeholder = "id_concelho_profissional", @tabindex = "4" })
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group" style="padding-bottom: 3px; margin-bottom: 0;">
+            <label class="control-label">Telefone</label>
+            @HtmlControls.TextBox("Telefone", new { @class = "form-control", @value = Model.celular, @placeholder = "Telefone", @tabindex = "1" })
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group" style="padding-bottom: 3px; margin-bottom: 0;">
+            <label class="control-label">Celular</label>
+            @HtmlControls.TextBox("Celular", new { @class = "form-control", @value = Model.celular, @placeholder = "Celular", @tabindex = "1" })
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group" style="padding-bottom: 3px; margin-bottom: 0;">
+            <label class="control-label">E-mail</label>
+            @HtmlControls.TextBox("Email", new { @class = "form-control", @value = Model.email, @placeholder = "E-mail", @tabindex = "1" })
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group" style="padding-bottom: 0; margin-bottom: 0;">
+            <label class="control-label">Cnpj</label>
+            @HtmlControls.TextBox("Cnpj", new { @class = "form-control", @value = Model.cnpj, @placeholder = "Cnpj", @tabindex = "1" })
+        </div>
+    </div>
+</div>
+
+<div class="noborder" style="margin: 15px 5px 0px 5px; text-align: right;">
+    <button type="button" class="btn blue-hoki" data-toggle="modal" href="#padrao">Salvar</button>
+    <button type="button" class="btn default">Limpar</button>
+</div>

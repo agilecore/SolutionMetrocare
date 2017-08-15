@@ -1,0 +1,58 @@
+delimiter $$
+
+drop procedure if exists sp_adiciona_credenciado_especialidade$$
+
+create procedure sp_adiciona_credenciado_especialidade
+(   
+    in v_id_contrato     int          ,         
+    in v_id_plano        int          ,  
+    in v_id_usuario      int          ,  
+    in v_nome            varchar(255) ,  
+    in v_descricao       text         ,  
+    in v_dt_cadastro     date         ,  
+    in v_dt_ativacao     date         ,  
+    in v_dt_desativacao  date         ,  
+    in v_documento       varchar(255) ,  
+    in v_status          char(1)     
+)      
+begin
+
+    if exists (select id_credenciado_especialidade from credenciado_especialidade where id_credenciado_especialidade = v_id_credenciado_especialidade) then
+
+        update contrato 
+           set id_credenciado_especialidade = v_id_credenciado_especialidad ,
+               id_credenciado               = v_id_credenciado              ,
+               id_especialidade             = v_id_especialidade            ,
+               principal                    = v_principal                   ,
+               dt_ativacao                  = v_dt_ativacao                 ,
+               dt_inativacao                = v_dt_inativacao               
+         where id_credenciado_especialidade = v_id_credenciado_especialidade;
+         commit;
+
+    else
+
+        insert into contrato 
+        (
+            id_credenciado_especialidade    , 
+            id_credenciado                  ,
+            id_especialidade                ,
+            principal                       ,
+            dt_ativacao                     ,
+            dt_inativacao                   
+        )                    
+        values               
+        (     
+            v_id_credenciado_especialidade  , 
+            v_id_credenciado                ,
+            v_id_especialidade              ,
+            v_principal                     ,
+            v_dt_ativacao                   ,
+            v_dt_inativacao                 
+        );  
+        commit;
+
+    end if;
+
+end$$ 
+
+delimiter ;                       

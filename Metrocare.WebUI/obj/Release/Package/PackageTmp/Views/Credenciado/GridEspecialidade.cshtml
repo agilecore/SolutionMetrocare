@@ -1,0 +1,94 @@
+﻿@using Metrocare.WebUI.HtmlHelpers;
+@model List<Metrocare.Common.EspecialidadeDto>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group" style="padding-left:5px;">
+            <label class="control-label">Especialidade do Profissional</label>
+            @HtmlControls.DropDownList("id_especialidade", EInputModel.Especialidades, new { @value=String.Empty, @class = "form-control", @tabindex = "1" })
+        </div>
+    </div>
+    <div class="col-md-6" style="padding-right:0px;">
+        <div class="form-group" style="padding-right:-15px;">
+            <label class="control-label">Consultório (Prestador)</label>
+            @HtmlControls.DropDownList("id_prestador", EInputModel.Prestador, new { @value=String.Empty, @class = "form-control", @tabindex = "1" })
+        </div>
+    </div>
+</div>  
+
+<table id="grid_semana" class="table table-striped table-bordered table-hover" style="margin: 10px 10px 5px 10px;">
+	<thead>
+		<tr>
+			<th class="text-center" style="width:25%;">Dia</th>
+			<th class="text-center">Manhã</th>
+            <th class="text-center">Tarde</th>
+            <th class="text-center">Integral</th>
+		</tr>
+     </thead> 
+     <tbody>
+        <tr>
+			<td class="text-center">Dom</td>
+            <td class="text-center"><input type="checkbox" class="checkboxes" value="1" /></td>
+            <td class="text-center"><input type="checkbox" class="checkboxes" value="1" /></td>
+            <td class="text-center"><input type="checkbox" class="checkboxes" value="1" /></td>
+		</tr>
+        <tr >
+			<td class="text-center">Seg</td>
+            <td class="text-center"><input type="checkbox" class="checkboxes" value="1" /></td>
+            <td class="text-center"><input type="checkbox" class="checkboxes" value="1" /></td>
+            <td class="text-center"><input type="checkbox" class="checkboxes" value="1" /></td>
+		</tr>
+        <tr >
+			<td class="text-center">Ter</td>
+            <td class="text-center"><input type="checkbox" class="checkboxes" value="1" /></td>
+            <td class="text-center"><input type="checkbox" class="checkboxes" value="1" /></td>
+            <td class="text-center"><input type="checkbox" class="checkboxes" value="1" /></td>
+		</tr>
+        <tr >
+			<td class="text-center">Qua</td>
+            <td class="text-center"><input type="checkbox" class="checkboxes" value="1" /></td>
+            <td class="text-center"><input type="checkbox" class="checkboxes" value="1" /></td>
+            <td class="text-center"><input type="checkbox" class="checkboxes" value="1" /></td>
+		</tr>
+        <tr >
+			<td class="text-center">Qui</td>
+            <td class="text-center"><input type="checkbox" class="checkboxes" value="1" /></td>
+            <td class="text-center"><input type="checkbox" class="checkboxes" value="1" /></td>
+            <td class="text-center"><input type="checkbox" class="checkboxes" value="1" /></td>
+		</tr>
+        <tr >
+			<td class="text-center">Sex</td>
+            <td class="text-center"><input type="checkbox" class="checkboxes" value="1" /></td>
+            <td class="text-center"><input type="checkbox" class="checkboxes" value="1" /></td>
+            <td class="text-center"><input type="checkbox" class="checkboxes" value="1" /></td>
+		</tr>
+        <tr >
+			<td class="text-center">Sab</td>
+            <td class="text-center"><input type="checkbox" class="checkboxes" value="1" /></td>
+            <td class="text-center"><input type="checkbox" class="checkboxes" value="1" /></td>
+            <td class="text-center"><input type="checkbox" class="checkboxes" value="1" /></td>
+		</tr>
+	</tbody>
+</table>
+                                          
+<div class="noborder" style="margin:15px -10px 0px 10px; text-align:right;">
+    <button type="button" class="btn blue-hoki" data-toggle="modal" href="#basic">Incluir</button>
+    <button type="button" class="btn default">Deletar</button>
+</div>
+
+<div class="modal fade" id="basic" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Selecionar Especialidade Médica</h4>
+            </div>
+            <div class="modal-body">
+								
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn blue-hoki">Selecionar</button>
+            </div>
+        </div>
+    </div>
+</div>

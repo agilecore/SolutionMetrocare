@@ -1,0 +1,4 @@
+C:\Users\Rodrigo\Desktop\Solution\Metronic.Common\bin\Debug\Metronic.Common.dll
+C:\Users\Rodrigo\Desktop\Solution\Metronic.Common\bin\Debug\Metronic.Common.pdb
+C:\Users\Rodrigo\Desktop\Solution\Metronic.Common\obj\Debug\Metronic.Common.dll
+C:\Users\Rodrigo\Desktop\Solution\Metronic.Common\obj\Debug\Metronic.Common.pdb

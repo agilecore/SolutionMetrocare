@@ -1,0 +1,119 @@
+﻿@using Metrocare.WebUI.HtmlHelpers;
+@model Metrocare.Common.DependenteDto
+
+@using (Html.BeginForm("Save", "Dependente", FormMethod.Post, new { @id = "form-dependente" }))
+{   
+    @Html.AntiForgeryToken()
+    
+    @HtmlControls.HiddenField("id_beneficiario", new { @value = Model.id_beneficiario, @autocomplete = "off" });
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group" style="padding-bottom: 3px; margin-bottom: 0;">
+                <label class="control-label">Nome do Dependente</label>
+                @HtmlControls.TextBox("nome", new { @class = "form-control", @value = Model.nome, @placeholder = "Nome do Dependente", @tabindex = "1" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="btn-group btn-group-justified" style="margin-top: 30px;">
+                <a href="javascript:;" class="btn btn-default">Gerar marca óptica </a>
+                <a href="javascript:;" class="btn btn-default">Histórico de ativação </a>
+                <a href="javascript:;" class="btn btn-default">Imprimir cadastro </a>
+            </div>
+        </div>
+    </div>
+    
+    <hr/>
+        <div class="row">
+        <div class="col-md-6">
+            <div class="form-group" style="padding-bottom: 3px; margin-bottom: 0;">
+                <label class="control-label">Logradouro</label>
+                @HtmlControls.TextBox("logradouro", new { @class = "form-control", @value = Model.logradouro, @placeholder = "Logradouro", @tabindex = "2" })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group" style="padding-bottom: 3px; margin-bottom: 0;">
+                <label class="control-label">Complemento</label>
+                @HtmlControls.TextBox("complemento", new { @class = "form-control", @value = Model.logradouro, @placeholder = "Complemento", @tabindex = "3" })
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group" style="padding-bottom: 3px; margin-bottom: 0;">
+                <label class="control-label">Nro.</label>
+                @HtmlControls.TextBox("numero", new { @class = "form-control", @value = Model.numero, @placeholder = "Número", @tabindex = "3", @maxlength = "5" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group" style="padding-bottom: 3px; margin-bottom: 0;">
+                <label class="control-label">Bairro</label>
+                @HtmlControls.TextBox("bairro", new { @class = "form-control", @value = Model.bairro, @placeholder = "Bairro", @tabindex = "5" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group" style="padding-bottom: 3px; margin-bottom: 0;">
+                <label class="control-label">Cidade</label>
+                @HtmlControls.TextBox("cidade", new { @class = "form-control", @value = Model.cidade, @placeholder = "Cidade", @tabindex = "6" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group" style="padding-bottom: 3px; margin-bottom: 0;">
+                <label class="control-label">Uf</label>
+                @{ 
+                    var result = EInputUF.None;
+
+                    foreach (var value in Enum.GetValues(typeof(EInputUF)))
+                    {
+                        if (value.ToString() == Model.uf)
+                        {
+                            result = (EInputUF)value;
+                            break;
+                        }
+                    }
+
+                    @HtmlControls.DropDownListCustomUF("uf", result, new { @class = "form-control", @value = Model.uf, @placeholder = "Estado", @tabindex = "7" }); 
+                }
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group" style="padding-bottom: 3px; margin-bottom: 0;">
+                <label class="control-label">Cep</label>
+                @HtmlControls.TextBox("cep", new { @class = "form-control", @value = Model.cep, @placeholder = "cep", @tabindex = "7", @maxlength = "8" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group" style="padding-bottom: 3px; margin-bottom: 0;">
+                <label class="control-label">Cpf</label>
+                @HtmlControls.TextBox("cpf", new { @class = "form-control", @value = Model.cpf, @placeholder = "Cpf", @tabindex = "8", @maxlength = "15" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group" style="padding-bottom: 3px; margin-bottom: 0;">
+                <label class="control-label">Rg</label>
+                @HtmlControls.TextBox("rg", new { @class = "form-control", @value = Model.rg, @placeholder = "Rg", @tabindex = "9", @maxlength = "15" })
+            </div>
+        </div>
+    </div>     
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group" style="padding-bottom: 3px; margin-bottom: 0;">
+                <label class="control-label">E-mail</label>
+                @HtmlControls.TextBox("email", new { @class = "form-control", @value = Model.email, @placeholder = "E-mail", @tabindex = "12", @maxlength = "30" })
+            </div>
+        </div>
+    </div> 
+
+    <div class="noborder" style="margin: 15px 5px 0px 5px; text-align: right;">
+        <input id="btnSave" type="submit" class="btn blue-hoki" title="Salvar" value="Salvar" tabindex="16" />
+        <input id="btnClear" type="button" class="btn default" title="Limpar" value="Limpar" tabindex="17" />
+    </div>           
+}    

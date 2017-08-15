@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9ECE2DAF-1A1F-4B46-85FB-0824451493DB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Metrocare.Common</RootNamespace>
+    <AssemblyName>Metrocare.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AgendaDto.cs" />
+    <Compile Include="ConcelhoProfissionalDto.cs" />
+    <Compile Include="ConcelhoProfissionalFilter.cs" />
+    <Compile Include="BeneficiarioDto.cs" />
+    <Compile Include="BeneficiarioFilter.cs" />
+    <Compile Include="PrestadorFilter.cs" />
+    <Compile Include="DependenteFilter.cs" />
+    <Compile Include="DependenteDto.cs" />
+    <Compile Include="CredenciadoFilter.cs" />
+    <Compile Include="EspecialidadeFilter.cs" />
+    <Compile Include="EspecialidadeDto.cs" />
+    <Compile Include="CredenciadoDto.cs" />
+    <Compile Include="ExceptionDto.cs" />
+    <Compile Include="LogFilter.cs" />
+    <Compile Include="LogDto.cs" />
+    <Compile Include="LoginFilter.cs" />
+    <Compile Include="LoginDto.cs" />
+    <Compile Include="Enums\ECategoriaNotaFiscal.cs" />
+    <Compile Include="Extension.cs" />
+    <Compile Include="Helper\HelperEnum.cs" />
+    <Compile Include="Helper\HttpHelper.cs" />
+    <Compile Include="PrestadorDto.cs" />
+    <Compile Include="UsuarioFilter.cs" />
+    <Compile Include="MenuFilter.cs" />
+    <Compile Include="Enums\ETipoLogradouro.cs" />
+    <Compile Include="Enums\EEstado.cs" />
+    <Compile Include="MenuDto.cs" />
+    <Compile Include="Page.cs" />
+    <Compile Include="UsuarioDto.cs" />
+    <Compile Include="Enums\EBandeiras.cs" />
+    <Compile Include="Enums\EFormasDePagamento.cs" />
+    <Compile Include="Enums\ETipoNotaFiscal.cs" />
+    <Compile Include="Base.cs" />
+    <Compile Include="UsuarioLogradouroDto.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

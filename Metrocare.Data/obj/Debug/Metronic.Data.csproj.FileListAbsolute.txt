@@ -1,0 +1,9 @@
+C:\Users\Rodrigo\Desktop\Solution\Metronic.Data\bin\Debug\Metronic.Data.dll
+C:\Users\Rodrigo\Desktop\Solution\Metronic.Data\bin\Debug\Metronic.Data.pdb
+C:\Users\Rodrigo\Desktop\Solution\Metronic.Data\bin\Debug\Dapper.dll
+C:\Users\Rodrigo\Desktop\Solution\Metronic.Data\bin\Debug\Metronic.Common.dll
+C:\Users\Rodrigo\Desktop\Solution\Metronic.Data\bin\Debug\Metronic.Common.pdb
+C:\Users\Rodrigo\Desktop\Solution\Metronic.Data\bin\Debug\Dapper.xml
+C:\Users\Rodrigo\Desktop\Solution\Metronic.Data\obj\Debug\Metronic.Data.csprojResolveAssemblyReference.cache
+C:\Users\Rodrigo\Desktop\Solution\Metronic.Data\obj\Debug\Metronic.Data.dll
+C:\Users\Rodrigo\Desktop\Solution\Metronic.Data\obj\Debug\Metronic.Data.pdb

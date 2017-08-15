@@ -1,0 +1,12 @@
+﻿@{ Layout = null; }
+@model List<Metrocare.Common.BeneficiarioDto> 
+<h3 class="page-title">@ViewBag.Title</h3>
+<div class="page-bar">
+    @Html.Partial("_Breadcrumb")
+</div>
+<div class="row">
+    <div class="col-md-12 fadeIn animated">
+          @Html.Partial("Filter")
+          @Html.Partial("Grid", Model)      
+    </div>
+</div>

@@ -1,0 +1,22 @@
+﻿@{ Layout = null;}
+@model Metrocare.Common.UsuarioDto
+<h3 class="page-title">@ViewBag.Title</h3>
+<div class="page-bar">
+    @Html.Partial("_Breadcrumb")
+</div>
+<div class="row">
+    <div class="col-md-12 fadeIn animated"> 
+         <!-- Dados do usuario -->
+        <div class="tabbable-custom ">
+            <ul class="nav nav-tabs ">
+                <li class="active">
+                    <a href="#busca" data-toggle="tab" aria-expanded="true">Usuário</a>
+                </li>
+            </ul>
+            <div class="tab-content" style="padding:8px 17.5px 17.5px 17.5px;">
+                 @Html.Partial("Form", Model)
+            </div>
+        </div>
+    </div>
+</div>        
+

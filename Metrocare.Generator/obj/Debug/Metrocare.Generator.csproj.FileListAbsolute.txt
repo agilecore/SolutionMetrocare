@@ -1,0 +1,12 @@
+C:\Users\Rodrigo\Desktop\Solution\Metronic.Generator\obj\Debug\Metrocare.Generator.csprojResolveAssemblyReference.cache
+C:\Users\Rodrigo\Desktop\Solution\Metronic.Generator\bin\Debug\Metrocare.Generator.exe.config
+C:\Users\Rodrigo\Desktop\Solution\Metronic.Generator\bin\Debug\Metrocare.Generator.exe
+C:\Users\Rodrigo\Desktop\Solution\Metronic.Generator\bin\Debug\Metrocare.Generator.pdb
+C:\Users\Rodrigo\Desktop\Solution\Metronic.Generator\obj\Debug\Metrocare.Generator.exe
+C:\Users\Rodrigo\Desktop\Solution\Metronic.Generator\obj\Debug\Metrocare.Generator.pdb
+C:\Users\Rodrigo\Desktop\Solution\Metrocare.Generator\bin\Debug\Metrocare.Generator.exe.config
+C:\Users\Rodrigo\Desktop\Solution\Metrocare.Generator\bin\Debug\Metrocare.Generator.exe
+C:\Users\Rodrigo\Desktop\Solution\Metrocare.Generator\bin\Debug\Metrocare.Generator.pdb
+C:\Users\Rodrigo\Desktop\Solution\Metrocare.Generator\obj\Debug\Metrocare.Generator.csprojResolveAssemblyReference.cache
+C:\Users\Rodrigo\Desktop\Solution\Metrocare.Generator\obj\Debug\Metrocare.Generator.exe
+C:\Users\Rodrigo\Desktop\Solution\Metrocare.Generator\obj\Debug\Metrocare.Generator.pdb

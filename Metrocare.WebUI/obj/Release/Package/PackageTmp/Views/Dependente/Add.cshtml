@@ -1,0 +1,23 @@
+﻿@{ Layout = null; }
+@model Metrocare.Common.DependenteDto
+<h3 class="page-title">@ViewBag.Title</h3>
+<div class="page-bar">
+    @Html.Partial("_Breadcrumb")
+</div>
+<div class="row">
+    <div class="col-md-12 fadeIn animated"> 
+         <!-- Dados do Beneficiario (local de atendomento) -->
+        <div class="tabbable-custom ">
+            <ul class="nav nav-tabs ">
+                <li class="active">
+                    <a href="#busca" data-toggle="tab" aria-expanded="true">Dependente</a>
+                </li>
+            </ul>
+            <div class="tab-content" style="padding:8px 17.5px 17.5px 17.5px;">
+                @Html.Partial("Form", Model)
+            </div>
+        </div>
+    </div>
+</div>
+<script src="@Url.Content("~/Content/assets/global/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js?v=1")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/script/dependente/add.js?v=1")" type="text/javascript"></script>

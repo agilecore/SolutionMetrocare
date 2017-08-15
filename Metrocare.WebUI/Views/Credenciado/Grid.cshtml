@@ -1,0 +1,114 @@
+﻿@using Metrocare.WebUI.HtmlHelpers;
+@model List<Metrocare.Common.CredenciadoDto>
+<div class="tabbable-custom ">
+    <ul class="nav nav-tabs ">
+        <li class="active">
+            <a href="#busca" data-toggle="tab" aria-expanded="true">Credenciado</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="busca">
+            <table id="grid" class="table table-bordered table-striped">
+                @if (Model.Count > 0)
+                {  
+                    <thead>
+                        <tr>
+                            <th style="width: 4%;" class="table-checkbox"></th>
+                            <th>Id</th>
+                            <th style="width: 25%;">Prestador</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="odd gradeX">
+                                <td style="width: 4%;">
+                                    <input type="checkbox" class="checkboxes" value="1" />
+                                </td>
+                                <td>@item.id_credenciado</td>
+                                <td>@item.nome</td>
+                            </tr> 
+                }
+                    </tbody>
+                }
+                else
+                { 
+                    <tbody>
+                        <tr>
+                            <td colspan="5" class="warning">Não existem registros a serem exibidos.</td>
+                        </tr>
+                    </tbody>
+                }
+            </table>     
+            <div class="noborder" style="margin: 15px 0 0 0; border: 0px solid red; text-align: right;">
+                @if (Model.Count > 0) { <a type="button" class="btn red" href="@Url.Content("~/Credenciado/Download")">Gerar PDF</a> }
+                <a id="btnAdd" class="btn blue-hoki">Incluir</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+ 
+<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css")" />
+<script type="text/javascript" src="@Url.Content("~/Content/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js")"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        //------------------------------------------------
+        // Botão adicionar
+        //------------------------------------------------
+        $('#btnAdd').click(function () {
+            $.ajax({
+                url: '/Credenciado/Add',
+                type: 'GET',
+                data: {},
+                timeout: 5000,
+                dataType: 'html',
+                beforeSend: function () {
+                    $('#page-load').fadeIn();
+                    $("html, body").stop().animate({ scrollTop: 0 }, 500, 'swing', function () { /*...*/ });
+                },
+                complete: function () {
+                    $('#page-load').fadeOut();
+                },
+                success: function (data) {
+                    $('#page-content').html(data).fadeIn();
+                },
+                error: function (xhr, status, error) {
+                    $('#page-content').html(xhr.responseText).fadeIn();
+                    $('#page-load').fadeOut();
+                }
+            });
+        });
+
+        //------------------------------------------------
+        // Grid de itens
+        //------------------------------------------------
+        @if (Model.Count > 0) 
+        {
+            <text>
+            $('#grid').DataTable({
+                "language": {
+                    url: '//cdn.datatables.net/plug-ins/3cfcc339e89/i18n/Portuguese.json'
+                },
+                "bStateSave": false, // save datatable state(pagination, sort, etc) in cookie.
+                "columns":
+                [
+                    { "orderable": false },
+                    { "orderable": true },
+                    { "orderable": true }
+                ],
+                "pageLength": 25,
+                "pagingType": "bootstrap_full_number",
+                "order": [
+                    [1, "asc"]
+                ]
+            });
+            </text>
+        }
+    });
+</script>
+
+
+

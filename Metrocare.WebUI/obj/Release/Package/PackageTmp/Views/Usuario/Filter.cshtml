@@ -1,0 +1,48 @@
+﻿@using Metrocare.WebUI.HtmlHelpers;
+
+@{
+    if ((bool)ViewBag.Enable)
+    {
+        <div class="tabbable-custom ">
+            <ul class="nav nav-tabs ">
+                <li class="active">
+                    <a href="#busca" data-toggle="tab" aria-expanded="true">Filtros</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="busca">
+                    @using (Html.BeginForm("List", "Usuario", FormMethod.Post))
+                    {
+                        <div class="form-body">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Nome</label>
+                                        @HtmlControls.TextBox("Nome", new { @class = "form-control", @value = Model.nome, @placeholder = "Nome", @tabindex = "1" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        @HtmlControls.DropDownListCustomStatus("Status",((Model.status == "A") ? EInputStatus.Ativo : (Model.status == "I") ? EInputStatus.Inativo : EInputStatus.None), new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-actions pull-left">
+                                        <a href="@Url.Content("~/Usuario/Add")" class="btn blue-hoki pull-right" style="margin-left: 10px;">Inserir</a>
+                                        <button type="submit" class="btn blue-hoki pull-right">Filtrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                    
+                    }
+                </div>
+            </div>
+        </div>
+    }
+      
+ }
+
+  

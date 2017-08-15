@@ -1,0 +1,29 @@
+﻿@{ Layout = null;}
+@model Metrocare.Common.CredenciadoDto
+<h3 class="page-title">Cadastro de Credenciado</h3>
+<div class="page-bar">
+    @Html.Partial("_Breadcrumb")
+</div>
+<div class="row">
+    <div class="col-md-12 fadeIn animated">
+        <div class="tabbable-custom ">
+            <ul class="nav nav-tabs ">
+                <li class="active">
+                    <a href="#busca" data-toggle="tab" aria-expanded="true">Credenciado</a>
+                </li>
+            </ul>
+            <div class="tab-content" style="padding:8px 17.5px 17.5px 17.5px;">
+                @Html.Partial("Edit", new Metrocare.Common.CredenciadoDto())
+            </div>
+        </div>
+    </div>     
+</div>
+<br/>
+<div class="row">
+    <div class="col-md-12">
+        @Html.Partial("GridPrestador", Model.prestador)
+    </div>
+</div>
+
+
+

@@ -1,0 +1,200 @@
+﻿@{ Layout = null;}
+@model Metrocare.Common.UsuarioDto
+<h3 class="page-title">@ViewBag.Title</h3>
+<div class="page-bar">
+    @Html.Partial("_Breadcrumb")
+</div>
+<div class="row">
+    <div class="col-md-12 fadeIn animated"> 
+         <!-- Dados do usuario -->
+        <div class="tabbable-custom ">
+            <ul class="nav nav-tabs ">
+                <li class="active">
+                    <a href="#busca" data-toggle="tab" aria-expanded="true">Usuário</a>
+                </li>
+            </ul>
+            <div class="tab-content" style="padding:8px 17.5px 17.5px 17.5px;">
+                 @Html.Partial("Form", Model)
+            </div>
+        </div>
+    </div>
+</div> 
+<script src="@Url.Content("~/Content/assets/global/plugins/bootstrap-toastr/toastr.min.js")"></script>
+<script src="@Url.Content("~/Content/assets/global/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js?v=1")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        //------------------------------------------------
+        // Validacao ates do submit
+        //------------------------------------------------
+        $("#form-usuario").validate({
+            rules: {
+                nome: { required: true, maxlength: 100 },
+                logradouro: { required: true, maxlength: 100 },
+                complemento: { required: true, maxlength: 100 },
+                numero: {
+                    required: true,
+                    min: 1,
+                    maxlength: 1,
+                    maxlength: 5,
+                    number: true
+                },
+                bairro: { required: true, maxlength: 100 },
+                cidade: { required: true, maxlength: 100 },
+                uf: { required: true },
+                cep: {
+                    required: true,
+                    min: 1,
+                    minlength: 8,
+                    maxlength: 8,
+                    number: true
+                },
+                cpf: { required: true },
+                rg: { required: true },
+                telefone: { required: true },
+                celular: { required: true },
+                email: { required: true, email: true },
+                latitude: { required: false, number: true },
+                longitude: { required: false, number: true },
+                ibge: { required: false, number: true },
+                dt_nascimento: { required: true, date: true }
+            },
+            messages: {
+                nome: { required: '', maxlength: '' },
+                logradouro: { required: '', maxlength: '' },
+                complemento: { required: '', maxlength: '' },
+                numero: { required: '', minlength: '', maxlength: '', min: '' },
+                bairro: { required: '', maxlength: '' },
+                cidade: { required: '', maxlength: '' },
+                uf: { required: '' },
+                cep: { required: '', minlength: '', maxlength: '', min: '' },
+                cpf: { required: '' },
+                rg: { required: '' },
+                telefone: { required: '' },
+                celular: { required: '' },
+                email: { required: '', maxlength: '', email: '' },
+                latitude: { required: '' },
+                longitude: { required: '' },
+                ibge: { required: '' },
+                dt_nascimento: { required: '', date:'' }
+            },
+            highlight: function (element) {
+                $(element).closest('.form-group').removeClass("has-success").addClass('has-error');
+                addMask();
+            },
+            unhighlight: function (element) {
+                $(element).closest('.form-group').removeClass("has-error").addClass('has-success');
+                addMask();
+            },
+            invalidHandler: function (event, validator) {
+                if (!validator.numberOfInvalids()) { return; }
+                $('html, body').animate({ scrollTop: $(validator.errorList[0].element).offset().top - 100 }, 700);
+                addMask();
+            },
+            errorElement: "div",
+            submitHandler: function (form) {
+                $.ajax({
+                    url: '/Usuario/Save',
+                    type: 'GET',
+                    data: $("#form-usuario").serialize(),
+                    timeout: 5000,
+                    dataType: 'html',
+                    beforeSend: function () {
+                        $('#page-load').fadeIn();
+                        $("html, body").stop().animate({ scrollTop: 0 }, 500, 'swing', function () { /*...*/ });
+                    },
+                    complete: function () {
+                        $('#page-load').html('&nbsp;');
+                        $('#page-load').fadeOut();
+                    },
+                    success: function (data) {                      
+                        $('#page-content').html(data).fadeIn();
+
+                        @{
+                            var Collection = (ViewBag.Errors != null) ? ViewBag.Errors as List<ModelError> : null;
+                            if (Collection != null)
+                            {
+                                foreach (var item in Collection)
+                                {
+                                    @:toastr.warning('@item.ErrorMessage', 'Erro!');
+                                    @:console.log('@item.ErrorMessage');
+                                }
+                            }
+                         }
+                    },
+                    error: function (xhr, status, error) {
+                        $('#page-content').html(xhr.responseText).fadeIn();
+                        $('#page-load').fadeOut();
+                    }
+                });
+            },
+            debug: false
+        });
+
+        addMask();
+
+        function addMask() {
+            $("#telefone").inputmask("mask", {
+                "mask": "(99) 9999-9999"
+            });
+
+            $("#celular").inputmask("mask", {
+                "mask": "(99) 99999-9999"
+            });
+
+            $("#cpf").inputmask("mask", {
+                "mask": "999.999.999-99"
+            });
+
+            $("#rg").inputmask("mask", {
+                "mask": "99.999.999-9"
+            });
+
+            $("#dt_nascimento").inputmask("mask", {
+                "mask": "99/99/9999"
+            });
+        }
+
+        $("#numero").keydown(function (e) {
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+               (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+               (e.keyCode >= 35 && e.keyCode <= 40)) {
+                return;
+            }
+
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) { e.preventDefault(); }
+        });
+
+        $("#longitude").keydown(function (e) {
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+               (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+               (e.keyCode >= 35 && e.keyCode <= 40)) {
+                return;
+            }
+
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) { e.preventDefault(); }
+        });
+
+        $("#latitude").keydown(function (e) {
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+               (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+               (e.keyCode >= 35 && e.keyCode <= 40)) {
+                return;
+            }
+
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) { e.preventDefault(); }
+        });
+
+        $("#ibge").keydown(function (e) {
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+               (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+               (e.keyCode >= 35 && e.keyCode <= 40)) {
+                return;
+            }
+
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) { e.preventDefault(); }
+        });
+
+    }); 
+</script>
+

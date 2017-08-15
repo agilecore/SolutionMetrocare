@@ -1,0 +1,8 @@
+C:\Users\Rodrigo\Desktop\Solution\Metrocare.Data\bin\Release\Metrocare.Data.dll
+C:\Users\Rodrigo\Desktop\Solution\Metrocare.Data\bin\Release\Metrocare.Data.pdb
+C:\Users\Rodrigo\Desktop\Solution\Metrocare.Data\bin\Release\Metrocare.Common.dll
+C:\Users\Rodrigo\Desktop\Solution\Metrocare.Data\bin\Release\Metrocare.Common.pdb
+C:\Users\Rodrigo\Desktop\Solution\Metrocare.Data\bin\Release\Dapper.xml
+C:\Users\Rodrigo\Desktop\Solution\Metrocare.Data\obj\Release\Metrocare.Data.csprojResolveAssemblyReference.cache
+C:\Users\Rodrigo\Desktop\Solution\Metrocare.Data\obj\Release\Metrocare.Data.dll
+C:\Users\Rodrigo\Desktop\Solution\Metrocare.Data\obj\Release\Metrocare.Data.pdb

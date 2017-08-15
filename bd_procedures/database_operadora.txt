@@ -1,0 +1,1009 @@
+create table usuario 
+(
+    id_usuario                     int                            not null auto_increment ,
+    nome                           varchar(255)                   not null ,
+    cpf                            varchar(30)                    not null ,
+	rg                             varchar(30)                    not null ,
+    logradouro                     varchar(255)                   not null ,
+    complemento                    varchar(255)                   null     ,
+    numero                         int                            not null ,
+    cep                            int                            not null ,
+    bairro                         varchar(255)                   null     ,
+    cidade                         varchar(255)                   null     ,
+    uf                             varchar(2)                     null     ,
+    email                          varchar(15)                    not null ,
+    telefone                       varchar(15)                    null     ,
+    celular                        varchar(15)                    null     ,
+    contato                        varchar(255)                   not null ,
+    dt_cadastro                    date                           not null ,
+    dt_nascimento                  date                           not null ,
+    longitude                      int                            not null ,
+    latitude                       int                            not null ,
+    ibge                           int                            null     ,
+    senha                          varchar(255)                   not null ,
+    status                         char(1)                        not null ,
+    primary key                    (id_usuario)            
+); 
+
+insert into usuario values (1,'Antonio Rodrigo Fernandes','32359328875','Av Nilo Peçanha','Casa',22,18111290,'Árvore Grande','Sorocaba','SP',
+'rodrigo_arf@hotmail.com','(15)99621-9829','(15)99621-9829','Rodrigo', now(), now(), 0,0,0,'rodrigo_arf','A');
+
+insert into usuario values (2,'John Doe','32343428856','Av Joao Laureano','Ap 10',22,19111000,'Rio Acima','Votorantim','SP',
+'rodrigo_arf@hotmail.com','(15)88621-5637','(15)88621-5637','John', now(), now(), 0,0,0,'john_doe','A');
+commit;                                
+
+create table prestador 
+(
+    id_prestador                   int                           not null auto_increment ,
+    nome                           varchar(255)                  not null  ,
+    cpf                            varchar(30)                   not null  ,
+    cnpj                           varchar(30)                   null      ,
+    email                          varchar(30)                   not null  ,
+    logradouro                     varchar(255)                  not null  ,
+    complemento                    varchar(255)                  null      ,
+    numero                         int                           not null  ,
+    cep                            int                           not null  ,
+    bairro                         varchar(255)                  null      ,
+    cidade                         varchar(255)                  null      ,
+    uf                             varchar(2)                    null      ,
+	telefone                       varchar(15)                   null      ,
+    celular                        varchar(15)                   null      ,
+    contato                        varchar(255)                  not null  ,
+    dt_cadastro                    date                          not null  ,
+    longitude                      int                           null      ,
+    latitude                       int                           null      ,
+    ibge                           int                           null      ,
+    primary key                    (id_prestador)                
+);
+
+create table dia
+(
+   id_dia      				   	   int not null auto_increment  ,
+   nome                            varchar(30)                  ,
+   sigla                           varchar(30)                  ,
+   primary key                     (id_dia)
+);
+
+insert into dia values (1,'Domingo','Dom');
+insert into dia values (2,'Segunda-Feira','Seg');
+insert into dia values (3,'Terça-Feira','Ter');
+insert into dia values (4,'Quarta-Feira','Qua');
+insert into dia values (5,'Quinta-Feira','Qui');
+insert into dia values (6,'Sexta-Feria','Sex');
+insert into dia values (7,'Sábado','Sab');
+commit;
+
+create table periodo
+(
+   id_periodo      				   int not null auto_increment  ,
+   nome                            varchar(30)                  ,
+   primary key                     (id_periodo)                  
+);
+
+insert into periodo values (1,'Manhã');
+insert into periodo values (2,'Tarde');
+insert into periodo values (3,'Noite');
+insert into periodo values (4,'Integral');
+commit;
+
+create table agenda
+(
+   id_agenda      				   int not null auto_increment  ,
+   id_credenciado 				   int not null				    ,
+   id_prestador   				   int not null				    ,
+   id_dia         				   int not null				    ,
+   id_periodo                      int not null				    ,
+   primary key                     (id_agenda)                  ,
+   unique                          (id_credenciado, id_prestador, id_dia, id_periodo)  ,
+   foreign key                     (id_dia)                     references dia(id_dia) ,
+   foreign key                     (id_periodo)                  references periodo(id_periodo) 
+);
+
+create table atendimento
+(
+   id_atendimento  				   int  not null auto_increment ,
+   id_agenda       				   int  not null				,
+   dt_atendimento                  date not null                ,
+   hora                            char(5) not null             ,
+   confirmado                      char(1) not null             , 
+   atendido                        char(1) not null             ,
+   primary key                     (id_atendimento)             ,
+   foreign key                     (id_agenda)                  references agenda(id_agenda) 
+);
+
+create table concelho_profissional
+(
+    id_concelho_profissional        int                          not null auto_increment ,
+    nome                            varchar(255)                 not null  , 
+    descricao                       varchar(255)                 not null  ,      
+    primary key                     (id_concelho_profissional)
+);
+
+insert into concelho_profissional values ( 1, 'CRAS'    ,'Conselho Regional de Assistência Social');
+insert into concelho_profissional values ( 2, 'CRV'     ,'Conselho Regional de Medicina Veterinária');
+insert into concelho_profissional values ( 3, 'COREN'   ,'Conselho Federal de Enfermagem');
+insert into concelho_profissional values ( 4, 'CRN'     ,'Conselho Regional de Nutrição');
+insert into concelho_profissional values ( 5, 'CRF'     ,'Conselho Regional de Farmácia');
+insert into concelho_profissional values ( 6, 'CRO'     ,'Conselho Regional de Odontologia');
+insert into concelho_profissional values ( 7, 'CRFA'    ,'Conselho Regional de Fonoaudiologia');
+insert into concelho_profissional values ( 8, 'CRP'     ,'Conselho Regional de Psicologia');
+insert into concelho_profissional values ( 9, 'CREFITO' ,'Conselho Regional de Fisioterapia e Terapia Ocupacional');
+insert into concelho_profissional values (10, 'OUT'     ,'Outros Conselhos');
+insert into concelho_profissional values (11, 'CRM'     ,'Conselho Regional de Medicina');
+commit;
+
+create table credenciado 
+(
+    id_credenciado                  int                          not null auto_increment ,
+    id_concelho_profissional        int                          not null  ,
+    nome                            varchar(255)                 not null  ,
+    nro_concelho                    int                          not null  ,
+    uf_concelho                     char(2)                      not null  ,  
+    cpf                             varchar(30)                  not null  ,
+    cnpj                            varchar(30)                  not null  ,
+    email                           varchar(15)                  not null  ,
+    telefone                        varchar(15)                  null      ,
+    celular                         varchar(15)                  null      ,
+    contato                         varchar(255)                 not null  ,
+    dt_cadastro                     date                         not null  ,
+    dt_nascimento					date                         not null  ,
+	longitude                       int                          not null  ,
+    latitude                        int                          not null  ,
+    ibge                            int                          null      ,
+    primary key                     (id_credenciado)                       ,         
+    foreign key                     (id_concelho_profissional)   references concelho_profissional(id_concelho_profissional) 
+);
+
+create table credenciado_endereco 
+(
+    id_endereco                      int                         not null auto_increment ,
+    id_credenciado                   int                         not null  ,
+    logradouro                       varchar(255)                not null  ,
+    complemento                      varchar(255)                null      ,
+    numero                           int                         not null  ,
+    cep                              int                         not null  ,
+    bairro                           varchar(255)                null      ,
+    cidade                           varchar(255)                null      ,
+    uf                               varchar(2)                  null      ,
+    principal                        varchar(1)                  null      ,
+    primary key                      (id_endereco)                         ,
+    foreign key                      (id_credenciado)            references credenciado(id_credenciado) 
+);
+
+create table especialidade
+(
+    id_especialidade                 int                         not null auto_increment ,
+    nome                             varchar(255)                not null  ,
+    status                           char(1)                     not null  ,
+    primary key                      (id_especialidade)
+);
+
+insert into especialidade values ( 1, 'Acupuntura','A');
+insert into especialidade values ( 2, 'Alergia e Imunologia','A');
+insert into especialidade values ( 3, 'Anestesiologia','A');
+insert into especialidade values ( 4, 'Angiologia','A');
+insert into especialidade values ( 5, 'Cancerologia','A');
+insert into especialidade values ( 6, 'Cardiologia','A');
+insert into especialidade values ( 7, 'Cirurgia Cardiovascular','A');
+insert into especialidade values ( 8, 'Cirurgia da Mão','A');
+insert into especialidade values ( 9, 'Cirurgia de cabeça e pescoço','A');
+insert into especialidade values (10, 'Cirurgia do Aparelho Digestivo','A');
+insert into especialidade values (11, 'Cirurgia Geral','A');
+insert into especialidade values (12, 'Cirurgia Pediátrica','A');
+insert into especialidade values (13, 'Cirurgia Plástica','A');
+insert into especialidade values (14, 'Cirurgia Torácica','A');
+insert into especialidade values (15, 'Cirurgia Vascular','A');
+insert into especialidade values (16, 'Clínica Médica','A');
+insert into especialidade values (17, 'Coloproctologia','A');
+insert into especialidade values (18, 'Dermatologia','A');
+insert into especialidade values (19, 'Endocrinologia e Metabologia','A');
+insert into especialidade values (20, 'Endoscopia','A');
+insert into especialidade values (21, 'Gastroenterologia','A');
+insert into especialidade values (22, 'Genética médica','A');
+insert into especialidade values (23, 'Geriatria','A');
+insert into especialidade values (24, 'Ginecologia e obstetrícia','A');
+insert into especialidade values (25, 'Hematologia e Hemoterapia','A');
+insert into especialidade values (26, 'Homeopatia','A');
+insert into especialidade values (27, 'Infectologia','A');
+insert into especialidade values (28, 'Mastologia','A');
+insert into especialidade values (29, 'Medicina de Família e Comunidade','A');
+insert into especialidade values (30, 'Medicina do Trabalho','A');
+insert into especialidade values (31, 'Medicina do Tráfego','A');
+insert into especialidade values (32, 'Medicina Esportiva','A');
+insert into especialidade values (33, 'Medicina Física e Reabilitação','A');
+insert into especialidade values (34, 'Medicina Intensiva','A');
+insert into especialidade values (35, 'Medicina Nuclear','A');
+insert into especialidade values (36, 'Medicina Preventiva','A');
+insert into especialidade values (37, 'Nefrologia','A');
+insert into especialidade values (38, 'Neurocirurgia','A');
+insert into especialidade values (39, 'Neurologia','A');
+insert into especialidade values (40, 'Nutrologia','A');
+insert into especialidade values (41, 'Obstetrícia','A');
+insert into especialidade values (42, 'Oftalmologia','A');
+insert into especialidade values (43, 'Ortopedia e Traumatologia','A');
+insert into especialidade values (44, 'Otorrinolaringologia','A');
+insert into especialidade values (45, 'Patologia','A');
+insert into especialidade values (46, 'Pediatria','A');
+insert into especialidade values (47, 'Pneumologia','A');
+insert into especialidade values (48, 'Psiquiatria','A');
+insert into especialidade values (49, 'Radiologia e Diagnóstico por Imagem','A');
+insert into especialidade values (50, 'Radioterapia','A');
+insert into especialidade values (51, 'Reumatologia','A');
+insert into especialidade values (52, 'Urologia','A');
+commit;
+
+create table carater_atendimento
+(
+    id_carater_atendimento          int               not null auto_increment ,
+    nome                            varchar(255)      not null                ,
+    primary key                     (id_carater_atendimento)
+);
+
+insert into carater_atendimento values (1,'Eletivo');
+insert into carater_atendimento values (2,'Urgência/Emergência');
+commit;
+
+create table cbo
+(
+    id_cbo                          int               not null  ,
+    nome                            varchar(255)      not null  ,
+    primary key                     (id_cbo)
+);
+
+insert into cbo values (01280, 'Físico nuclear');
+insert into cbo values (06141, 'Médico de saúde da família');
+insert into cbo values (03370, 'Técnico de saneamento'); 
+insert into cbo values (06142, 'Médico neurologista');
+insert into cbo values (04945, 'Pedagogo'); 
+insert into cbo values (06143, 'Médico geneticista clínico');
+insert into cbo values (05110, 'Biologista em geral (biólogo biomédico)'); 
+insert into cbo values (06144, 'Médico infectologista');
+insert into cbo values (05230, 'Bioquímico'); 
+insert into cbo values (06145, 'Médico obstetra');
+insert into cbo values (05250, 'Bacteriologista'); 
+insert into cbo values (06146, 'Médico cirurgião de cabeça e pescoço');
+insert into cbo values (05270, 'Farmacologista'); 
+insert into cbo values (06147, 'Médico oftalmologista');
+insert into cbo values (05290, 'Outros bacteriologistas e trabalhadores assemelhados'); 
+insert into cbo values (06148, 'Médico homeopata');
+insert into cbo values (06105, 'Médico em geral (clínico geral)'); 
+insert into cbo values (06149, 'Médico ginecologista / obstetra');
+insert into cbo values (06110, 'Médico cirurgião em geral'); 
+insert into cbo values (06150, 'Médico ortopedista');
+insert into cbo values (06112, 'Médico cirurgião pediátrico'); 
+insert into cbo values (06151, 'Médico geral comunitário');
+insert into cbo values (06113, 'Médico de perícias médicas'); 
+insert into cbo values (06152, 'Médico otorrinolaringologista');
+insert into cbo values (06114, 'Médico anatomopatologista');
+insert into cbo values (06153, 'Médico citopatologista');
+insert into cbo values (06115, 'Médico anestesista');
+insert into cbo values (06154, 'Médico cirurgião torácico');
+insert into cbo values (06116, 'Médico broncoesofalogista');
+insert into cbo values (06155, 'Médico pediatra');
+insert into cbo values (06117, 'Médico cardiologista');
+insert into cbo values (06156, 'Médico ultrasonografista');
+insert into cbo values (06118, 'Médico cirurgião vascular');
+insert into cbo values (06157, 'Médico pneumotisiologista');
+insert into cbo values (06119, 'Médico dermatologista');
+insert into cbo values (06158, 'Médico acupunturista');
+insert into cbo values (06120, 'Médico cirurgião cardiovascular');
+insert into cbo values (06159, 'Médico cancerologista');
+insert into cbo values (06121, 'Médico oncologista pediátrico');
+insert into cbo values (06160, 'Médico proctologista');
+insert into cbo values (06122, 'Médico do trabalho');
+insert into cbo values (06161, 'Médico cirurgião de mão');
+insert into cbo values (06123, 'Médico gastroenterologista');
+insert into cbo values (06162, 'Médico psiquiatra');
+insert into cbo values (06124, 'Médico hematologista');
+insert into cbo values (06163, 'Médico cirurgião do aparelho digestivo');
+insert into cbo values (06125, 'Médico endocrinologista');
+insert into cbo values (06164, 'Médico plantonista');
+insert into cbo values (06126, 'Médico nuclear');
+insert into cbo values (06165, 'Médico radiologista');
+insert into cbo values (06127, 'Médico endoscopista');
+insert into cbo values (06166, 'Médico intensivista');
+insert into cbo values (06128, 'Médico fisiatra');
+insert into cbo values (06167, 'Médico radioterapeuta');
+insert into cbo values (06129, 'Médico oncologista clínico');
+insert into cbo values (06168, 'Médico oncologista cirúrgico');
+insert into cbo values (06130, 'Médico reumatologista');
+insert into cbo values (06170, 'Médico urologista');
+insert into cbo values (06131, 'Médico neurocirurgião');
+insert into cbo values (06172, 'Médico patologista clínico');
+insert into cbo values (06132, 'Médico ginecologista');
+insert into cbo values (06175, 'Médico angiologista');
+insert into cbo values (06133, 'Médico alergista / imunologista');
+insert into cbo values (06177, 'Médico de medicina esportiva');
+insert into cbo values (06134, 'Médico geriatra');
+insert into cbo values (06180, 'Médico cirurgião plástico');
+insert into cbo values (06135, 'Médico hemoterapeuta');
+insert into cbo values (06190, 'Outros médicos');
+insert into cbo values (06136, 'Médico hansenologista');
+insert into cbo values (06310, 'Cirurgião dentista em geral');
+insert into cbo values (06137, 'Médico legista');
+insert into cbo values (06330, 'Cirurgião dentista (saúde pública)');
+insert into cbo values (06138, 'Médico nefrologista');
+insert into cbo values (06335, 'Cirurgião dentista (traumatologia buco maxilo facial)');
+insert into cbo values (06139, 'Médico mastologista');
+insert into cbo values (06340, 'Cirurgião dentista (endodontia)');
+insert into cbo values (06140, 'Médico sanitarista');
+insert into cbo values (06345, 'Cirurgião dentista (ortodontia)');
+insert into cbo values (06350, 'Cirurgião dentista (patologiabucal);');
+insert into cbo values (07550, 'Técnico em orientação e mobilidade de cegos e deficientes visuais');
+insert into cbo values (06355, 'Cirurgião dentista (pediatria)');
+insert into cbo values (07620, 'Fisioterapeuta');
+insert into cbo values (06360, 'Cirurgião dentista (prótese)');
+insert into cbo values (07630, 'Terapeuta ocupacional');
+insert into cbo values (06365, 'Cirurgião dentista (radiologia)');
+insert into cbo values (07690, 'Terapeuta em geral (outros terapeutas)');
+insert into cbo values (06370, 'Cirurgia dentista (periodontia)');
+insert into cbo values (07720, 'Operador de raio-x');
+insert into cbo values (06510, 'Médico veterinário em geral');
+insert into cbo values (07730, 'Operador de eletrocardiógrafo');
+insert into cbo values (06540, 'Zootecnista');
+insert into cbo values (07740, 'Operador de eletroencefalografo');
+insert into cbo values (06710, 'Farmacêutico em geral');
+insert into cbo values (07790, 'Outros operadores de equipamentos médicos e odontológicos');
+insert into cbo values (06810, 'Nutricionista em geral');
+insert into cbo values (07914, 'Foniatra');
+insert into cbo values (07110, 'Enfermeiro em geral');
+insert into cbo values (07915, 'Acupunturista');
+insert into cbo values (07111, 'Enfermeiro do PACS');
+insert into cbo values (07925, 'Fonoaudiólogo');
+insert into cbo values (07112, 'Enfermeiro do PSF');
+insert into cbo values (07935, 'Técnico de higiene dental');
+insert into cbo values (07130, 'Enfermeiro sanitarista');
+insert into cbo values (07945, 'Quiropata');
+insert into cbo values (07140, 'Enfermeiro do trabalho');
+insert into cbo values (07946, 'Técnico em laboratório');
+insert into cbo values (07145, 'Enfermeiro obstetra 07948 Técnico de radiologia');
+insert into cbo values (07150, 'Enfermeiro de centro cirúrgico');
+insert into cbo values (07950, 'Técnico de ortopedia');
+insert into cbo values (07155, 'Enfermeiro de terapia intensiva');
+insert into cbo values (19998, 'Outros profissionais de nível superior');
+insert into cbo values (07160, 'Enfermeiro peuricultor e pediátrico');
+insert into cbo values (19999, 'Outros profissionais de nível técnico e médio');
+insert into cbo values (07165, 'Enfermeiro psiquiátrico');
+insert into cbo values (31120, 'Agente administrativo');
+insert into cbo values (07210, 'Técnico de enfermagem em geral');
+insert into cbo values (07215, 'Técnico de enfermagem do trabalho');
+insert into cbo values (31122, 'Auxiliar administrativo');
+insert into cbo values (07220, 'Técnico de enfermagem de terapia intensiva');
+insert into cbo values (57210, 'Auxiliar de enfermagem');
+insert into cbo values (57216, 'Auxiliar de enfermagem no PSF');
+insert into cbo values (07230, 'Técnico de enfermagem psiquiátrica');
+insert into cbo values (57220, 'Atendente de enfermagem');
+insert into cbo values (07234, 'Técnico em vigilância sanitária');
+insert into cbo values (57232, 'Agente de vigilância sanitária');
+insert into cbo values (07236, 'Técnico em reabilitação');
+insert into cbo values (57233, 'Agente de saneamento');
+insert into cbo values (07238, 'Técnico em equipamento médico-hospitalar');
+insert into cbo values (57235, 'Guarda de endemias / agente de zoonoses / agente de controle de vetores');
+insert into cbo values (07290, 'Técnico de enfermagem do PSF');
+insert into cbo values (57260, 'Parteira');
+insert into cbo values (07310, 'Assistente social em geral');
+insert into cbo values (57275, 'Auxiliar de análises clínicas');
+insert into cbo values (07410, 'Psicólogo em geral 57280 Socorrista habilitado');
+insert into cbo values (07525, 'Ortoptista 57282 Agente comunitário');
+insert into cbo values (07530, 'Ótico');
+insert into cbo values (99999, 'Outros profissionais não classificáveis nessa tabela');
+commit;
+
+create table plano_categoria
+(
+    id_plano_categoria                int                       not null auto_increment ,
+    nome                              varchar(255)              not null  ,
+    primary key                       (id_plano_categoria)
+);
+
+insert into plano_categoria values (1, 'Plano Familiar');
+insert into plano_categoria values (2, 'Plano Empresarial');
+commit;
+
+create table plano_inativacao
+(
+    id_plano_inativacao               int                        not null auto_increment ,
+    nome                              varchar(255)               not null  ,
+    primary key                       (id_plano_inativacao)
+);
+
+insert into plano_inativacao values (1,'Cancelado por Inadinplencia'            );
+insert into plano_inativacao values (2,'Cancelado por Óbito'                    );
+insert into plano_inativacao values (3,'Cancelado Solicitado pelo Beneficiário' );
+commit; 
+
+create table plano
+(
+    id_plano                          int                       not null auto_increment ,
+    id_plano_categoria                int                       not null  ,
+    id_usuario                        int                       not null  ,
+    plano_inativacao                  int                       not null  ,
+    nome                              varchar(255)              not null  ,
+    registro_ans                      varchar(255)              not null  ,
+    dt_cadastro                       date                      not null  ,
+    dt_ativacao                       date                      not null  ,
+    dt_desativacao                    date                      not null  ,
+    idade_minima                      int                       not null  ,
+    idade_maxima                      int                       not null  ,
+    permite_dependentes               char(1)                   not null  ,
+    primary key                       (id_plano)                          ,
+    foreign key                       (id_plano_categoria)      references plano_categoria(id_plano_categoria),
+    foreign key                       (id_usuario)              references usuario(id_usuario)
+); 
+
+create table contrato
+(
+    id_contrato                        int                       not null auto_increment ,
+    id_plano                           int                       not null  ,
+    id_usuario                         int                       not null  ,
+    nome                               varchar(255)              not null  ,
+    descricao                          text                      null      ,
+    dt_cadastro                        date                      not null  ,
+    dt_ativacao                        date                      not null  ,
+    dt_desativacao                     date                      not null  ,
+    documento                          varchar(255)              not null  ,
+    status                             char(1)                   not null  ,
+    primary key                        (id_contrato)                       ,
+    foreign key                        (id_plano)                references plano(id_plano),
+    foreign key                        (id_usuario)              references usuario(id_usuario)
+);
+
+create table carteira
+(
+    id_carteira                       int                       not null auto_increment ,
+    id_plano                          int                       not null  ,
+    id_usuario                        int                       not null  ,
+    id_plano_inativacao               int                       null      ,
+    id_benef_depend                   int                       not null  ,
+    dt_ativacao                       date                      null      ,
+    dt_inativacao                     date                      null      ,
+    marca_optica                      varchar(255)              not null  ,
+    status                            char(1)                   not null  ,
+    primary key                       (id_carteira)                       ,
+    foreign key                       (id_plano)                references plano(id_plano),
+    foreign key                       (id_usuario)              references usuario(id_usuario),
+    foreign key                       (id_plano_inativacao)     references plano_inativacao(id_plano_inativacao)
+);
+
+create table credenciado_especialidade 
+(
+    id_credenciado_especialidade      int                        not null auto_increment ,
+    id_credenciado                    int                        not null ,
+    id_especialidade                  int                        not null ,
+    principal                         varchar(1)                 null     ,
+    dt_ativacao                       date                       null     ,
+    dt_inativacao                     date                       null     ,
+    primary key                       (id_credenciado_especialidade)      ,
+    foreign key                       (id_credenciado)           references credenciado(id_credenciado),
+    foreign key                       (id_especialidade)         references especialidade(id_especialidade) 
+);
+
+create table beneficiario
+(
+    id_beneficiario                   int                        not null auto_increment ,
+    id_carteira                       int                        null      ,
+    id_usuario                        int                        not null  ,
+    nome                              varchar(255)               not null  ,
+    cpf                               varchar(255)               not null  ,
+    rg                                varchar(255)               not null  ,
+    logradouro                        varchar(255)               not null  ,
+    complemento                       varchar(255)               null      ,
+    numero                            int                        not null  ,
+    cep                               int                        not null  ,
+    bairro                            varchar(255)               null      ,
+    cidade                            varchar(255)               null      ,
+    uf                                varchar(2)                 null      ,
+    email                             varchar(255)               null      ,
+	telefone 						  varchar(30) 				 null      ,
+    celular							  varchar(30) 				 null      ,
+    latitude 						  int 						 null      ,
+	longitude 						  int 						 null      ,
+	dt_cadastro                       date                       not null  ,
+	dt_nascimento                     date                       not null  ,
+	ibge 						      int 						 null      ,
+    primary key                       (id_beneficiario)                    ,
+    foreign key                       (id_carteira)              references carteira(id_carteira),
+    foreign key                       (id_usuario)               references usuario (id_usuario)    
+);
+
+create table grau_parentesco
+(
+    id_parentesco                      int                       not null auto_increment ,
+    nome                               varchar(255)              not null ,
+    primary key                        (id_parentesco)
+);
+
+insert into grau_parentesco values (1, 'Mãe'      ); 
+insert into grau_parentesco values (2, 'Pai'      ); 
+insert into grau_parentesco values (3, 'Filho(a)' ); 
+insert into grau_parentesco values (4, 'Irmão(a)' ); 
+insert into grau_parentesco values (5, 'Avô(ó)'   ); 
+insert into grau_parentesco values (6, 'Tio(a)'   ); 
+commit;
+
+create table dependente
+(
+    id_dependente             int                       not null auto_increment ,
+    id_beneficiario           int                       not null  ,
+    id_parentesco             int                       not null  ,
+    id_carteira               int                       not null  ,
+    id_usuario                int                       not null  ,
+    nome                      varchar(255)              not null  ,
+    cpf                       varchar(255)              not null  ,
+    rg                        varchar(255)              not null  ,
+    logradouro                varchar(255)              not null  ,
+    complemento               varchar(255)              null      ,
+    numero                    int                       not null  ,
+    cep                       int                       not null  ,
+    bairro                    varchar(255)              null      ,
+    cidade                    varchar(255)              null      ,
+    uf                        varchar(2)                null      ,
+    email                     varchar(255)              null      ,
+    dt_cadastro               date                      not null  ,
+    primary key               (id_dependente)                     ,
+    foreign key               (id_parentesco)           references grau_parentesco(id_parentesco), 
+    foreign key               (id_carteira)             references carteira(id_carteira), 
+    foreign key               (id_usuario)              references usuario(id_usuario) 
+);
+
+create table tipo_guia
+(
+     id_tipo_guia             int                        not null auto_increment ,
+     id_guia                  int                        not null  ,
+     primary key              (id_tipo_guia)
+);
+
+insert into tipo_guia values (1, 'Guia de Consulta');
+insert into tipo_guia values (2, 'Guia de SADT');
+insert into tipo_guia values (3, 'Guia de Solicitação de Internação');
+insert into tipo_guia values (4, 'Guia de Resumo de Internação');
+insert into tipo_guia values (5, 'Guia de Honorário Individual');
+insert into tipo_guia values (6, 'Guia de Tratamento odontológico');
+insert into tipo_guia values (7, 'Guia de Tratamento odontológico - demonstrativo de pagamento');
+insert into tipo_guia values (8, 'Anexos de Guia - Situação inicial');
+insert into tipo_guia values (9, 'Guia de Outras Despesas');
+commit;
+
+create table tipo_guia_saida
+(
+     id_tipo_saida                    int                        not null auto_increment ,
+     id_tipo_guia                     int                        not null  ,
+     nome                             int                        not null  ,
+     primary key                      (id_tipo_saida)                      ,
+     foreign key                      (id_tipo_guia)             references tipo_guia(id_tipo_guia) 
+);
+
+-- tipo de saida para guia de consulta
+insert into tipo_guia_saida values (1, 1, 'Retorno');
+insert into tipo_guia_saida values (2, 1, 'Retorno SADT');
+insert into tipo_guia_saida values (3, 1, 'Referência');
+insert into tipo_guia_saida values (4, 1, 'Internação');
+insert into tipo_guia_saida values (5, 1, 'Unidade coronariana');
+insert into tipo_guia_saida values (6, 1, 'OUtras diárias');
+commit;
+
+create table plano_tabela
+(
+    id_plano_tabela                    int                      not null auto_increment ,
+    id_plano                           int                      not null  ,
+    nome                               varchar(255)             not null  ,
+    primary key                        (id_plano_tabela)                  ,
+    foreign key                        (id_plano)               references plano(id_plano)
+);
+
+create table tabela_proced
+(
+    id_pln_tbl_prc                     int                      not null auto_increment ,
+    id_plano_tabela                    int                      not null  ,     
+    id_procedimento                    varchar(30)              not null  , -- Código do prcedimento
+    nome                               varchar(255)             not null  , -- nome do procedimento
+    nro_auxiliares                     int                      default 0 , -- Nº Auxiliares no procedimento
+    valor_porte                        decimal(15,2)            default 0 , -- Porte em reais
+    valor_custo_operacional            decimal(15,2)            default 0 , -- Valor do UCO em reais
+    valor_porte_anestesico             decimal(15,2)            default 0 , -- Valor do porte anestesico em reais
+    valor_filme                        decimal(15,2)            default 0 , -- Valor em reais
+    valor_total                        decimal(15,2)            default 0 , -- Valor total do procedimento em reais
+    primary key                        (id_pln_tbl_prc)                   ,
+	foreign key                        (id_plano_tabela)        references plano_tabela(id_plano_tabela)
+);
+
+create table tuss
+(
+   id_proc_amb90                      varchar(30)              not null  , -- Prodimento
+   id_proc_amb92                      varchar(30)              not null  , -- Prodimento
+   id_proc_amb96                      varchar(30)              not null  , -- Prodimento
+   id_proc_cbhpm5                     varchar(30)              not null  , -- Prodimento
+   id_proc_tuss                       varchar(30)              not null  , -- Prodimento
+   nome                               varchar(255)             not null  , -- Nome do procedimento
+);
+
+create table grau_participacao
+(
+    id_grau_participacao      int                       not null auto_increment ,
+    nome                      varchar(255)              not null  ,
+    primary key               (id_grau_participacao)
+);
+
+insert into grau_participacao values ( 1, 'Cirurgião'                   );          
+insert into grau_participacao values ( 2, 'Primeiro Auxiliar'           );  
+insert into grau_participacao values ( 3, 'Segundo Auxiliar'            );   
+insert into grau_participacao values ( 4, 'Terceiro Auxiliar'           );  
+insert into grau_participacao values ( 5, 'Quarto Auxiliar'             );    
+insert into grau_participacao values ( 6, 'Instrumentador'              );     
+insert into grau_participacao values ( 7, 'Anestesista'                 );
+insert into grau_participacao values ( 8, 'Auxiliar de Anestesista'     );
+insert into grau_participacao values ( 9, 'Consultor'                   );
+insert into grau_participacao values (10, 'Perfusionista'               );
+insert into grau_participacao values (11, 'Pediatra na sala de parto'   );
+insert into grau_participacao values (12, 'Auxiliar SADT'               );
+insert into grau_participacao values (13, 'Clínico'                     );
+insert into grau_participacao values (14, 'Intensivista'                );
+commit;
+
+create table unidade_tempo
+(
+    id_unidade_tempo       varchar(1)        not null  ,
+    nome                   varchar(255)      not null  ,
+    primary key            (id_unidade_tempo)
+);
+
+insert into unidade_tempo values ('A', 'Anos');
+insert into unidade_tempo values ('M', 'Meses');
+insert into unidade_tempo values ('D', 'Dias');
+commit; 
+
+create table glosas_mensagens
+(
+     grupo                 varchar(255)      not null  ,
+     id_glosas_erros       int               not null  ,
+     descricao             varchar(255)      not null  ,
+     primary key           (id_glosas_erros)
+);
+
+insert into glosas_mensagens values ('Elegibilidade'            , 1001, 'Número da carteira inválido');
+insert into glosas_mensagens values ('Elegibilidade'            , 1002, 'Número do Cartão Nacional de Saúde inválido');
+insert into glosas_mensagens values ('Elegibilidade'            , 1003, 'A admissão do Beneficiário no prestador ocorreu antes da inclusão do Beneficiário na Operadora');
+insert into glosas_mensagens values ('Elegibilidade'            , 1004, 'Solicitação Anterior à Inclusão do Beneficiário');
+insert into glosas_mensagens values ('Elegibilidade'            , 1005, 'Atendimento anterior à inclusão do Beneficiário');
+insert into glosas_mensagens values ('Elegibilidade'            , 1006, 'Atendimento após o desligamento do Beneficiário');
+insert into glosas_mensagens values ('Elegibilidade'            , 1007, 'Atendimento dentro da carência do Beneficiário');
+insert into glosas_mensagens values ('Elegibilidade'            , 1008, 'Assinatura divergente');
+insert into glosas_mensagens values ('Elegibilidade'            , 1009, 'Beneficiário com pagamento em aberto');
+insert into glosas_mensagens values ('Elegibilidade'            , 1010, 'Assinatura do Titular / Responsável inexistente');
+insert into glosas_mensagens values ('Elegibilidade'            , 1011, 'Identificação do beneficiário não consistente');
+insert into glosas_mensagens values ('Elegibilidade'            , 1012, 'Serviço Profissional Hospitalar não é coberto pelo plano do beneficiário');
+insert into glosas_mensagens values ('Elegibilidade'            , 1013, 'Cadastro do beneficiário com problemas');
+insert into glosas_mensagens values ('Elegibilidade'            , 1014, 'Beneficiário com data de exclusão');
+insert into glosas_mensagens values ('Elegibilidade'            , 1015, 'Idade do Beneficiário acima idade limite');
+insert into glosas_mensagens values ('Elegibilidade'            , 1016, 'Beneficiário com atendimento suspenso');
+insert into glosas_mensagens values ('Elegibilidade'            , 1017, 'Data Validade da Carteira Vencida');
+insert into glosas_mensagens values ('Elegibilidade'            , 1018, 'Empresa do beneficiário suspensa / excluída');
+insert into glosas_mensagens values ('Elegibilidade'            , 1019, 'Família do Beneficiário com atendimento suspenso');
+insert into glosas_mensagens values ('Elegibilidade'            , 1020, 'Via de Cartão do Beneficiário Cancelada');
+insert into glosas_mensagens values ('Elegibilidade'            , 1021, 'Via de Cartão do Beneficiário não liberada');
+insert into glosas_mensagens values ('Elegibilidade'            , 1022, 'Via de Cartão do beneficiário não compatível');
+insert into glosas_mensagens values ('Elegibilidade'            , 1023, 'Nome do titular inválido');
+insert into glosas_mensagens values ('Elegibilidade'            , 1024, 'Plano não existente');
+insert into glosas_mensagens values ('Elegibilidade'            , 1099, 'Outros');
+insert into glosas_mensagens values ('Protocolo'                , 1101, 'Quantidade de Guias informadas no Protocolo diferente das cadastradas');
+insert into glosas_mensagens values ('Protocolo'                , 1102, 'Protocolo é de re-apresentação');
+insert into glosas_mensagens values ('Protocolo'                , 1103, 'Protocolo não é de reapresentação');
+insert into glosas_mensagens values ('Protocolo'                , 1104, 'Valor total do protocolo diferente do valor total das guias');
+insert into glosas_mensagens values ('Protocolo'                , 1199, 'Outros');
+insert into glosas_mensagens values ('Prestador'                , 1201, 'Atendimento fora da vigência do contrato com o credenciado');
+insert into glosas_mensagens values ('Prestador'                , 1202, 'Número do CNES inválido');
+insert into glosas_mensagens values ('Prestador'                , 1203, 'Código Prestador inválido');
+insert into glosas_mensagens values ('Prestador'                , 1204, 'Admissão anterior à inclusão do credenciado na rede');
+insert into glosas_mensagens values ('Prestador'                , 1205, 'Admissão após o desligamento do credenciado da rede');
+insert into glosas_mensagens values ('Prestador'                , 1206, 'CPF / CNPJ inválido');
+insert into glosas_mensagens values ('Prestador'                , 1207, 'Credenciado não pertence à Rede Credenciada');
+insert into glosas_mensagens values ('Prestador'                , 1208, 'Solicitação anterior à inclusão do Credenciado');
+insert into glosas_mensagens values ('Prestador'                , 1209, 'Solicitação após o desligamento do Credenciado');
+insert into glosas_mensagens values ('Prestador'                , 1210, 'Solicitante Credenciado não cadastrado');
+insert into glosas_mensagens values ('Prestador'                , 1211, 'Assinatura / Carimbo do Credenciado inexistente');
+insert into glosas_mensagens values ('Prestador'                , 1212, 'Atendimento / Referência fora da vigência do contrato do prestador');
+insert into glosas_mensagens values ('Prestador'                , 1213, 'CBO-S (especialidade) inválido');
+insert into glosas_mensagens values ('Prestador'                , 1214, 'Credenciado não habilitado a realizar o procedimento');
+insert into glosas_mensagens values ('Prestador'                , 1215, 'Credenciado fora da abrangência geográfica do plano');
+insert into glosas_mensagens values ('Prestador'                , 1216, 'Especialidade não cadastrada');
+insert into glosas_mensagens values ('Prestador'                , 1217, 'Especialidade não cadastrada para o prestador');
+insert into glosas_mensagens values ('Prestador'                , 1299, 'Outros');
+insert into glosas_mensagens values ('Guia'                     , 1301, 'Tipo Guia inválido');
+insert into glosas_mensagens values ('Guia'                     , 1302, 'Código Tipo Guia Principal e Número Guias Incompatíveis');
+insert into glosas_mensagens values ('Guia'                     , 1303, 'Não existe o Número Guia Principal informado');
+insert into glosas_mensagens values ('Guia'                     , 1304, 'Cobrança em guia indevida');
+insert into glosas_mensagens values ('Guia'                     , 1305, 'Item pago em outra Guia');
+insert into glosas_mensagens values ('Guia'                     , 1306, 'Não existe Número Guia Principal e/ou Código Guia Principal');
+insert into glosas_mensagens values ('Guia'                     , 1307, 'Número da guia inválido');
+insert into glosas_mensagens values ('Guia'                     , 1308, 'Guia já apresentada');
+insert into glosas_mensagens values ('Guia'                     , 1309, 'Procedimento contratado não está de acordo com o tipo de guia utilizado');
+insert into glosas_mensagens values ('Guia'                     , 1310, 'Serviço do tipo cirúrgico e invasivo. Equipe médica não informada na guia');
+insert into glosas_mensagens values ('Guia'                     , 1311, 'Prestador executante não informado');
+insert into glosas_mensagens values ('Guia'                     , 1312, 'Prestador contratado não informado');
+insert into glosas_mensagens values ('Guia'                     , 1313, 'Guia com rasura');
+insert into glosas_mensagens values ('Guia'                     , 1314, 'Guia sem assinatura e/ou carimbo do credenciado.');
+insert into glosas_mensagens values ('Guia'                     , 1315, 'Guia sem data do ato cirúrgico.');
+insert into glosas_mensagens values ('Guia'                     , 1316, 'Guia com local de atendimento preenchido incorretamente.');
+insert into glosas_mensagens values ('Guia'                     , 1317, 'Guia sem data do atendimento');
+insert into glosas_mensagens values ('Guia'                     , 1318, 'Guia com código de serviço preenchido incorretamente.');
+insert into glosas_mensagens values ('Guia'                     , 1319, 'Guia sem assinatura do assistido.');
+insert into glosas_mensagens values ('Guia'                     , 1320, 'Identificação do assistido incompleta');
+insert into glosas_mensagens values ('Guia'                     , 1321, 'Validade da guia expirada');
+insert into glosas_mensagens values ('Guia'                     , 1399, 'Outros');
+insert into glosas_mensagens values ('Autorização / Solicitação', 1401, 'Acomodação não autorizada');
+insert into glosas_mensagens values ('Autorização / Solicitação', 1402, 'Procedimento não autorizado');
+insert into glosas_mensagens values ('Autorização / Solicitação', 1403, 'Não existe informação sobre a senha de autorização do procedimento');
+insert into glosas_mensagens values ('Autorização / Solicitação', 1404, 'Não existe guia de autorização relacionada');
+insert into glosas_mensagens values ('Autorização / Solicitação', 1405, 'Data de Validade da Senha é anterior a Data do Atendimento');
+insert into glosas_mensagens values ('Autorização / Solicitação', 1406, 'Número da Senha informado diferente do liberado');
+insert into glosas_mensagens values ('Autorização / Solicitação', 1407, 'Serviço solicitado não possui cobertura');
+insert into glosas_mensagens values ('Autorização / Solicitação', 1408, 'Quantidade Serviço Solicitada acima da Autorizada');
+insert into glosas_mensagens values ('Autorização / Solicitação', 1409, 'Quantidade Serviço solicitada acima coberta');
+commit;
+
+create table tipo_internacao
+(
+     id_tipo_internacao    int                not null auto_increment ,
+     nome                  varchar(255)       not null  ,
+     primary key           (id_tipo_internacao)
+);
+
+insert into tipo_internacao values (1,'Clínica');
+insert into tipo_internacao values (2,'Cirúrgica');
+insert into tipo_internacao values (3,'Obstétrica');
+insert into tipo_internacao values (4,'Pediátrica');
+insert into tipo_internacao values (5,'Psiquiátrica');
+commit;
+
+create table tipo_doenca
+(
+     id_tipo_doenca        char(1)           not null  ,
+     nome                  varchar(255)      not null  ,
+     primary key           (id_tipo_doenca)
+);
+
+insert into tipo_doenca values ('A','Aguda');
+insert into tipo_doenca values ('C','Crônica');
+commit;
+
+create table tempo_doenca
+(
+     id_tempo_doenca       char(1)           not null  ,
+     nome                  varchar(255)      not null  ,
+     primary key           (id_tempo_doenca)
+);
+
+insert into tempo_doenca values ('A', 'Aguda');
+insert into tempo_doenca values ('M', 'Meses');
+insert into tempo_doenca values ('D', 'Dias');
+commit;
+
+create table tipo_atendimento
+(
+     id_tipo_atendimento   int               not null auto_increment ,
+     nome                  varchar(255)      not null  ,
+     primary key           (id_tipo_atendimento)
+);
+
+insert into tipo_atendimento values ( 1, 'Remoção'                         );
+insert into tipo_atendimento values ( 2, 'Pequena Cirurgia'                );
+insert into tipo_atendimento values ( 3, 'Terapias'                        );
+insert into tipo_atendimento values ( 4, 'Consulta'                        );
+insert into tipo_atendimento values ( 5, 'Exames'                          );
+insert into tipo_atendimento values ( 6, 'Atendimento Domiciliar'          );
+insert into tipo_atendimento values ( 7, 'SADT Internado'                  );
+insert into tipo_atendimento values ( 8, 'Quimioterapia'                   );
+insert into tipo_atendimento values ( 9, 'Radioterapia'                    );
+insert into tipo_atendimento values (10, 'Terapia Renal Substitutiva (TRS)');
+commit;
+
+create table tecnica_utilizada
+(
+    id_tecnica_utilizada   varchar(2)        not null  ,
+    nome                   varchar(255)      not null  ,
+    primary key            (id_tecnica_utilizada)
+);
+
+insert into tecnica_utilizada values ('C', 'Convencional');
+insert into tecnica_utilizada values ('V', 'Videolaparoscopia (utilizar o "V" para as cirurgias vídeo assistidas)');
+commit; 
+
+create table tipo_acomodacao
+(
+     tipo_acomodacao       int               not null auto_increment ,
+     nome                  varchar(255)      not null  ,
+     primary key           (tipo_acomodacao)
+);
+
+insert into tipo_acomodacao values ( 1, 'Enfermaria');
+insert into tipo_acomodacao values ( 2, 'Quarto particular');
+insert into tipo_acomodacao values ( 3, 'UTI');
+insert into tipo_acomodacao values ( 4, 'Enfermaria dois leitos');
+insert into tipo_acomodacao values ( 5, 'One Day clinic');
+insert into tipo_acomodacao values ( 6, 'Unidade intermediaria');
+insert into tipo_acomodacao values ( 7, 'Apartamento');
+insert into tipo_acomodacao values ( 8, 'Ambulatório');
+insert into tipo_acomodacao values (11, 'Apartamento luxo');
+insert into tipo_acomodacao values (12, 'Apartamento Simples');
+insert into tipo_acomodacao values (13, 'Apartamento Standard');
+insert into tipo_acomodacao values (14, 'Apartamento Suíte');
+insert into tipo_acomodacao values (15, 'Apartamento com alojamento conjunto');
+insert into tipo_acomodacao values (21, 'Berçário normal');
+insert into tipo_acomodacao values (22, 'Berçário patológico / prematuro');
+insert into tipo_acomodacao values (23, 'Berçário patológico com isolamento');
+insert into tipo_acomodacao values (31, 'Enfermaria (3 leitos)');
+insert into tipo_acomodacao values (32, 'Enfermaria (4 ou mais leitos)');
+insert into tipo_acomodacao values (33, 'Enfermaria com alojamento conjunto');
+insert into tipo_acomodacao values (34, 'Hospital Dia');
+insert into tipo_acomodacao values (35, 'Isolamento');
+insert into tipo_acomodacao values (41, 'Quarto Coletivo (2 leitos)');
+insert into tipo_acomodacao values (42, 'Quarto privativo');
+insert into tipo_acomodacao values (43, 'Quarto com alojamento conjunto');
+insert into tipo_acomodacao values (51, 'UTI Adulto');
+insert into tipo_acomodacao values (52, 'UTI Pediátrica');
+insert into tipo_acomodacao values (53, 'UTI Neo-Natal');
+insert into tipo_acomodacao values (54, 'TSI - Unidade de Terapia semi-Intensiva');
+insert into tipo_acomodacao values (55, 'Unidade coronariana');
+insert into tipo_acomodacao values (61, 'Outras diárias');
+commit;
+
+create table concelho_profissional
+(
+    id_concelho_profissional int               not null auto_increment ,
+    nome                     varchar(255)      not null  ,
+    primary key              (id_concelho_profissional)
+);
+
+create table indicador_acidente
+(
+    id_indicador_acidente    int               not null auto_increment ,
+    nome                     varchar(255)      not null  ,
+    primary key              (id_indicador_acidente)
+);
+
+insert into indicador_acidente values (1, 'Acidente ou doença relacionada a trabalho');
+insert into indicador_acidente values (2, 'Acidente ou doença relacionada a trânsito');
+insert into indicador_acidente values (3, 'Outros');
+commit;
+
+create table alta
+(
+    id_alta                  int               not null  ,
+    nome                     varchar(255)      not null  ,
+    primary key              (id_alta)
+);
+
+insert into alta values ( 1, 'Grávida no momento');
+insert into alta values ( 2, 'Até 42 dias após o término da gestação');
+insert into alta values ( 3, 'De 43 dias até 12 meses após o término da gestação');
+insert into alta values (10, 'Para complementação em internação domiciliar');
+insert into alta values (11, 'Curado');
+insert into alta values (12, 'Melhorado');
+insert into alta values (13, 'Inalterado');
+insert into alta values (14, 'A pedido');
+insert into alta values (15, 'Internado para diagnóstico');
+insert into alta values (16, 'Administrativa');
+insert into alta values (17, 'Por indisciplina');
+insert into alta values (18, 'Por evasão');
+insert into alta values (19, 'Para completar tratamento'); 
+insert into alta values (21, 'Por características da doença');
+insert into alta values (22, 'Por intercorrência');
+insert into alta values (23, 'Por motivo social');
+insert into alta values (24, 'Por doença crônica');
+insert into alta values (25, 'Por impossibilidade de convívio sócio-familiar');
+insert into alta values (31, 'Para tisiologia');
+insert into alta values (32, 'Para psiquiatria');
+insert into alta values (33, 'Para clínica médica');
+insert into alta values (34, 'Para cirurgia');
+insert into alta values (35, 'Para obstetrícia');
+insert into alta values (36, 'Para berçário');
+insert into alta values (37, 'Para pediatria');
+insert into alta values (38, 'Para isolamento');
+insert into alta values (39, 'Para outros (CTI, radioterapia, etc.)');
+insert into alta values (41, 'Até 24 horas da internação');
+insert into alta values (43, 'Ocorreu após 48 horas da internação');
+insert into alta values (44, 'Óbito de parturiente, com necrópsia, com permanência do recém-nascido');
+insert into alta values (45, 'De 24 até 48h de internação, paciente chegou agônico');
+insert into alta values (46, 'De 24 até 48h de internação, paciente não chegou agônico');
+insert into alta values (51, 'Nas primeiras 48 horas, chegou agônico');
+insert into alta values (52, 'Nas primeiras 48 horas, não chegou agônico');
+insert into alta values (53, 'Ocorreu após 48 horas de internação');
+insert into alta values (54, 'Óbito de parturiente, com necrópsia, com permanência do recém-nascido');
+insert into alta values (61, 'Em politraumatizado c/menos 24hs da 1ª Cirurgia');
+insert into alta values (62, 'Em politraumatizado 24 a 48hs após 1ª Cirurgia');
+insert into alta values (63, 'Em politraumatizado 48 a 72hs após 1ª Cirurgia');
+insert into alta values (64, 'Em politraumatizado acima 72hs após 1ª Cirurgia');
+insert into alta values (65, 'Em cirurgia de emergência c/ menos 24 hs após 1ª Cirurgia');
+insert into alta values (66, 'Em cirurgia de emergência 24 a 48hs após 1ª Cirurgia');
+insert into alta values (67, 'Em cirurgia de emergência 48 a 72hs após 1ª Cirurgia');
+insert into alta values (68, 'Em cirurgia de emergência acima 72h após 1ª Cirurgia');
+insert into alta values (69, 'Alta da parturiente com permanência do recém-nascido');
+insert into alta values (71, 'Em caso de alta da parturiente com permanência do recém nascido'); 
+commit;
+
+/*
+ TABELA DE LOGS
+*/
+create table alteracao
+(
+    id_alteracao              int                       not null auto_increment ,
+    nome                      varchar(255)              not null  ,
+    primary key               (id_alteracao)
+);
+
+insert into alteracao values (1, 'Insert');
+insert into alteracao values (2, 'Update');
+insert into alteracao values (3, 'Delete');
+commit;
+
+create table log_acesso
+(
+   id_usuario                 int                       not null ,
+   dt_log                     date                      not null    
+);
+
+create table log_plano
+(
+    id_log_plano              int                       not null auto_increment ,
+    id_alteracao              int                       not null  ,
+    id_usuario                int                       not null  ,
+    dt_alteracao              date                      not null  ,  
+    primary key               (id_log_plano)
+);
+
+create table log_contrato
+(
+    id_log_contrato           int                       not null auto_increment ,
+    id_alteracao              int                       not null  ,
+    id_usuario                int                       not null  ,
+    dt_alteracao              date                      not null  ,
+    primary key               (id_log_contrato)
+);
+
+create table log_beneficiario
+(
+    id_log_beneficiario       int                       not null auto_increment ,
+    id_usuario                int                       not null  ,
+    id_alteracao              int                       not null  ,
+    dt_alteracao              date                      not null  ,
+    primary key               (id_log_beneficiario)
+);
+
+create table log_dependente
+(
+    id_log_dependente         int                       not null auto_increment ,
+    id_usuario                int                       not null  ,
+    id_alteracao              int                       not null  ,
+    primary key               (id_log_dependente)
+);
+
+create table log_credenciado
+(
+    id_log_credenciado        int                       not null auto_increment ,
+    id_usuario                int                       not null  ,
+    id_alteracao              int                       not null  ,
+    primary key               (id_log_credenciado)
+);
+
+create table log_prestador
+(
+    id_log_prestador          int                       not null auto_increment ,
+    id_usuario                int                       not null  ,
+    id_alteracao              int                       not null  ,
+    primary key               (id_log_prestador)
+);
+
+create table sessions
+(
+	sessionid                 varchar(80)               null      ,
+	applicationname           varchar(255)              null      ,
+	created                   date                      null      ,
+	expires                   date                      null      ,
+	lockdate                  date                      null      ,
+	lockid                    int                       null      ,
+	timeout                   int                       null      ,
+	locked                    TINYINT(1)                null      ,
+	sessionitems              text                      null      ,
+	flags                     int                       null      ,
+	primary key               (sessionid,applicationname)
+);

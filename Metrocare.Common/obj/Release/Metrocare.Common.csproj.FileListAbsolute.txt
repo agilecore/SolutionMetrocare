@@ -1,0 +1,5 @@
+C:\Users\Rodrigo\Desktop\Solution\Metrocare.Common\bin\Release\Metrocare.Common.dll
+C:\Users\Rodrigo\Desktop\Solution\Metrocare.Common\bin\Release\Metrocare.Common.pdb
+C:\Users\Rodrigo\Desktop\Solution\Metrocare.Common\obj\Release\Metrocare.Common.csprojResolveAssemblyReference.cache
+C:\Users\Rodrigo\Desktop\Solution\Metrocare.Common\obj\Release\Metrocare.Common.dll
+C:\Users\Rodrigo\Desktop\Solution\Metrocare.Common\obj\Release\Metrocare.Common.pdb

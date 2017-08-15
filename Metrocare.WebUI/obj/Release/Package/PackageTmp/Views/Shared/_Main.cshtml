@@ -1,0 +1,119 @@
+﻿<ul class="page-sidebar-menu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+    <li class="sidebar-toggler-wrapper" style="margin-bottom: 15px;">
+        <div class="sidebar-toggler"></div>
+    </li>
+    @{
+        var menuGrupoCollection = HttpContext.Current.Session["UserMenu"] as List<Metrocare.Common.MenuGrupoDto>;
+
+        if (menuGrupoCollection != null)
+        {
+            if (menuGrupoCollection.Count > 0)
+            {        
+                foreach (var item in menuGrupoCollection)
+                {
+                    <li class="start active @((item.Open) ? "open" : null)">
+                        <a @((!String.IsNullOrEmpty(item.Color) ? String.Format("style=background:{0};", item.Color) : string.Empty)) >
+                            <i style="color:#fff;" class="@item.Icon"></i>
+                            <span style="color:#fff;" class="title">@item.Descricao</span>
+                            <span style="color:#fff;" class="arrow @((item.Open) ? "open" : null)"></span>
+                        </a>
+                        @if (item.MenuCollection.Count > 0)
+                        {
+                            <ul class="sub-menu" @((item.Open) ? "style=display:block;" : "style=display:none;") >
+                                @foreach (var subItem in item.MenuCollection)
+                                {
+                                    <li>
+                                        <a id="@(item.Prefixo + "_" + subItem.Id.ToString())" ><i class="@subItem.Icon"></i> @subItem.Descricao</a>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    </li>  
+                }
+            }
+        }          
+        
+    }
+</ul>
+
+<script>
+
+    $("#ger_1").click(function () {   
+        loadPage('/Dashboard/List');   
+    });
+
+    $("#ger_2").click(function () {             
+        loadPage('/Log/List');
+    });
+
+    $("#ger_3").click(function () {      
+        loadPage('/Usuario/List');
+    });
+
+    $("#crd_1").click(function () {
+        loadPage('/Beneficiario/List');
+    });
+
+    $("#crd_2").click(function () {
+        loadPage('/Dependente/List');
+    });
+
+    $("#crd_3").click(function () {
+        loadPage('/Credenciado/List');
+    });
+
+    $("#crd_4").click(function () {
+        loadPage('/Prestador/List');
+    });
+
+    function loadPage(url) {
+        $.ajax({
+            url: url,
+            type: 'GET',
+            data: {},
+            timeout: 5000,
+            dataType: 'html',
+            beforeSend: function () {
+                $('#page-load').fadeIn();
+                $('#page-content').html('&nbsp;')
+                $("html, body").stop().animate({ scrollTop: 0 }, 500, 'swing', function () { /*...*/ });
+            },
+            complete: function () {
+                $('#page-load').fadeOut();                 
+            },
+            success: function (data) {
+                $('#page-content').html(data).fadeIn();
+            },
+            error: function (xhr, status, error) {
+                $('#page-content').html(xhr.responseText).fadeIn();
+                $('#page-load').fadeOut();
+            }            
+        });   
+    }
+
+
+
+
+
+
+
+
+
+
+    //$(function () {
+    //    $("#crd_4").on("click", function (e) {
+    //        //$('.page-sidebar .ajaxify.start').click();
+    //        e.preventDefault();
+            
+    //        //$("#preloader").delay(500).fadeOut("slow").remove();
+
+    //        var url = $(this).attr("href");
+    //        $.get(url).done(function (result) {
+               
+    //            $("#page-content").html('');
+    //            $("#page-content").html(result);
+    //        });   
+
+    //    });
+    //});
+</script>

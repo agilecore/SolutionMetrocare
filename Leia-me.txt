@@ -1,0 +1,11 @@
+Para abrir a aplicação inicilar o arquivo 
+
+   Metronic.Security.sln
+
+dentro da pasta 
+
+   Metronic.Security
+
+Aplicação desenvolvida em 
+
+   Visual Studio 2012

@@ -1,0 +1,59 @@
+﻿@using Metrocare.WebUI.HtmlHelpers;
+@{
+    if ((bool)ViewBag.Enable)
+    {
+    <div class="tabbable-custom ">
+        <ul class="nav nav-tabs ">
+            <li class="active">
+                <a href="#busca" data-toggle="tab" aria-expanded="true">Filtros</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="busca">
+                @using (Html.BeginForm("Find", "Credenciado", FormMethod.Post))
+                {
+                    <div class="form-body" style="margin: auto 5px auto 5px;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Nome</label>
+                                    @HtmlControls.TextBox("nome", new { @class = "form-control", @name = "nome", @autocomplete = "off", @tabindex = "1" })
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label class="control-label">Nº Concelho</label>
+                                    @HtmlControls.TextBox("nro_concelho", new { @class = "form-control", @name = "nro_concelho", @autocomplete = "off", @tabindex = "2" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label class="control-label">Estado</label>
+                                    @HtmlControls.DropDownListCustomUF("uf_concelho", EInputUF.None, new { @class = "form-control", @placeholder = "nro_concelho", @tabindex = "3" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label class="control-label">Concelho</label>
+                                    @HtmlControls.DropDownList("id_concelho_profissional", EInputModel.ConcelhoProfissional, new { @class = "form-control", @placeholder = "id_concelho_profissional", @tabindex = "4" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-actions pull-left" style="margin-left: 5px;">
+                                    <button type="submit" class="btn blue-hoki pull-right">Filtrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                }
+            </div>
+        </div>
+    </div>  
+    }
+}

@@ -1,0 +1,74 @@
+﻿@using Metrocare.WebUI.HtmlHelpers;
+@model List<Metrocare.Common.PrestadorDto>
+<div class="tabbable-custom ">
+    <ul class="nav nav-tabs ">
+        <li class="active">
+            <a href="#busca" data-toggle="tab" aria-expanded="true">Locais de atendimento</a>
+        </li>
+    </ul>
+    <div class="tab-content" style="padding: 20px 20px 20px 20px;">
+        <table id="grid_prestador" class="table table-bordered table-striped">
+        @if (Model.Count > 0)
+        {  
+            <thead>
+                <tr>
+                    <th style="width: 4%;" class="table-checkbox"></th>
+                    <th>Id</th>
+                    <th>Prestador</th>
+                    <th>Logradouro/Nroº</th>
+                    <th>Bairro/Cidade</th>
+                    <th>Telefone/Celular</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="odd gradeX">
+                        <td style="width: 4%;">
+                            <input type="checkbox" class="checkboxes" value="1" />
+                        </td>
+                        <td>@item.id_prestador</td>
+                        <td>@item.nome</td>
+                        <td>@String.Format("{0}, nº: {1}", item.logradouro, item.numero)</td>
+                        <td>@String.Format("Bairro: {0}, Cidade: {1}", item.bairro, item.cidade)</td>
+                        <td>@String.Format("Telefone: {0}, Celular: {1}", item.telefone, item.celular)</td>
+                    </tr> 
+                }
+            </tbody>
+        }
+        else
+        { 
+            <tbody>
+                <tr>
+                    <td colspan="5" class="warning">Não existem locais de atendimento vinculados.</td>
+                </tr>
+            </tbody>
+        }   
+        </table>     
+
+        <div class="noborder" style="margin: 15px 0 0 0; border:0px solid red; text-align: right; ">
+            <button type="button" class="btn blue-hoki" data-toggle="modal" href="#prestador">Incluir</button>
+            <button type="button" class="btn default">Deletar</button>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="prestador" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Selecionar Prestador</h4>
+            </div>
+            <div class="modal-body">
+								
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn blue-hoki">Selecionar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

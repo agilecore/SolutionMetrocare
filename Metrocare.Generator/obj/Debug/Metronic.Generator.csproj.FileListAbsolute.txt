@@ -1,0 +1,13 @@
+C:\Users\anfernandes06\Desktop\Solution\Metronic.Generator\bin\Debug\Metronic.Generator.exe.config
+C:\Users\anfernandes06\Desktop\Solution\Metronic.Generator\bin\Debug\Metronic.Generator.exe
+C:\Users\anfernandes06\Desktop\Solution\Metronic.Generator\bin\Debug\Metronic.Generator.pdb
+C:\Users\anfernandes06\Desktop\Solution\Metronic.Generator\bin\Debug\Oracle.DataAccess.dll
+C:\Users\anfernandes06\Desktop\Solution\Metronic.Generator\obj\Debug\Metronic.Generator.csprojResolveAssemblyReference.cache
+C:\Users\anfernandes06\Desktop\Solution\Metronic.Generator\obj\Debug\Metronic.Generator.exe
+C:\Users\anfernandes06\Desktop\Solution\Metronic.Generator\obj\Debug\Metronic.Generator.pdb
+C:\Users\Rodrigo\Desktop\Solution\Metronic.Generator\bin\Debug\Metronic.Generator.exe.config
+C:\Users\Rodrigo\Desktop\Solution\Metronic.Generator\bin\Debug\Metronic.Generator.exe
+C:\Users\Rodrigo\Desktop\Solution\Metronic.Generator\bin\Debug\Metronic.Generator.pdb
+C:\Users\Rodrigo\Desktop\Solution\Metronic.Generator\obj\Debug\Metronic.Generator.csprojResolveAssemblyReference.cache
+C:\Users\Rodrigo\Desktop\Solution\Metronic.Generator\obj\Debug\Metronic.Generator.exe
+C:\Users\Rodrigo\Desktop\Solution\Metronic.Generator\obj\Debug\Metronic.Generator.pdb

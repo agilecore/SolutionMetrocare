@@ -1,0 +1,60 @@
+﻿@using Metrocare.WebUI.HtmlHelpers;
+@model List<Metrocare.Common.PrestadorDto>
+<div class="tabbable-custom ">
+    <ul class="nav nav-tabs ">
+        <li class="active">
+            <a href="#busca" data-toggle="tab" aria-expanded="true">Prestadores</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="busca">
+            <table id="grid" class="table table-bordered table-striped">
+                @if (Model.Count > 0)
+                {  
+                    <thead>
+                        <tr>
+                            <th style="width: 4%;" class="table-checkbox"></th>
+                            <th>Id</th>
+                            <th style="width: 25%;">Prestador</th>
+                            <th>Logradouro</th>
+                            <th>Editar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="odd gradeX">
+                                <td style="width: 4%;">
+                                    <input type="checkbox" class="checkboxes" value="1" />
+                                </td>
+                                <td>@item.id_prestador</td>
+                                <td>@item.nome</td>
+                                <td>@String.Format("{0}, nº{1}, {2}/{3}", item.logradouro, item.numero, item.bairro, item.cidade)</td>
+                                <td style="width: 4%;">
+                                    <a href="@Url.Content("~/Prestador/Add/" + @item.id_prestador)">Editar</a>
+                                </td>
+                            </tr> 
+                        }
+                    </tbody>
+                        }
+                        else
+                        { 
+                    <tbody>
+                        <tr>
+                            <td colspan="5" class="warning">Não existem locais de atendimento vinculados.</td>
+                        </tr>
+                    </tbody>
+                        }
+            </table>     
+            <div class="noborder" style="margin: 15px 0 0 0; border: 0px solid red; text-align: right;">
+                @if (Model.Count > 0) { <a type="button" class="btn red" href="@Url.Content("~/Prestador/Download")">Gerar PDF</a> }
+                <a type="button" class="btn blue-hoki" href="@Url.Content("~/Prestador/Add")">Incluir</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

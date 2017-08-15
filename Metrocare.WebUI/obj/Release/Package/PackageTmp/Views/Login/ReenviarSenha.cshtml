@@ -1,0 +1,17 @@
+﻿@using Metrocare.WebUI.HtmlHelpers;
+
+@using (Html.BeginForm("ReenviarSenha", "Login", FormMethod.Post, new { @class = "forget-form" }))
+{ 
+
+    <h3>Relembrar Senha</h3>  
+    <p>
+        Insira seu endereço de e-mail vinculado a sua conta para envio de uma nova senha.	
+    </p>       
+    <div class="form-group">
+         @HtmlControls.TextBox("email", new { @class = "form-control placeholder-no-fix", @placeholder = "Email", @tabindex = "3", @autocomplete = "off" })
+    </div>  
+    <div class="form-actions">
+        <button type="button" id="back-btn" class="btn btn-default">Voltar</button>
+        <button type="submit" class="btn btn-success uppercase pull-right">Enviar</button>
+    </div>
+}
