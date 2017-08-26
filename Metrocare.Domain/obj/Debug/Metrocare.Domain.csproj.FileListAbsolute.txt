@@ -19,3 +19,14 @@ C:\Users\Rodrigo\Desktop\Solution\Metrocare.Domain\bin\Debug\Metrocare.Data.pdb
 C:\Users\Rodrigo\Desktop\Solution\Metrocare.Domain\obj\Debug\Metrocare.Domain.csprojResolveAssemblyReference.cache
 C:\Users\Rodrigo\Desktop\Solution\Metrocare.Domain\obj\Debug\Metrocare.Domain.dll
 C:\Users\Rodrigo\Desktop\Solution\Metrocare.Domain\obj\Debug\Metrocare.Domain.pdb
+C:\Users\rodrigo.fernandes\Documents\GitHub\SolutionMetrocare\Metrocare.Domain\bin\Debug\Metrocare.Domain.dll
+C:\Users\rodrigo.fernandes\Documents\GitHub\SolutionMetrocare\Metrocare.Domain\bin\Debug\Metrocare.Domain.pdb
+C:\Users\rodrigo.fernandes\Documents\GitHub\SolutionMetrocare\Metrocare.Domain\bin\Debug\Metrocare.Common.dll
+C:\Users\rodrigo.fernandes\Documents\GitHub\SolutionMetrocare\Metrocare.Domain\bin\Debug\Metrocare.Data.dll
+C:\Users\rodrigo.fernandes\Documents\GitHub\SolutionMetrocare\Metrocare.Domain\bin\Debug\EntityFramework.dll
+C:\Users\rodrigo.fernandes\Documents\GitHub\SolutionMetrocare\Metrocare.Domain\bin\Debug\Metrocare.Common.pdb
+C:\Users\rodrigo.fernandes\Documents\GitHub\SolutionMetrocare\Metrocare.Domain\bin\Debug\Metrocare.Data.pdb
+C:\Users\rodrigo.fernandes\Documents\GitHub\SolutionMetrocare\Metrocare.Domain\bin\Debug\EntityFramework.xml
+C:\Users\rodrigo.fernandes\Documents\GitHub\SolutionMetrocare\Metrocare.Domain\obj\Debug\Metrocare.Domain.csprojResolveAssemblyReference.cache
+C:\Users\rodrigo.fernandes\Documents\GitHub\SolutionMetrocare\Metrocare.Domain\obj\Debug\Metrocare.Domain.dll
+C:\Users\rodrigo.fernandes\Documents\GitHub\SolutionMetrocare\Metrocare.Domain\obj\Debug\Metrocare.Domain.pdb

@@ -1,4 +1,0 @@
-C:\Users\Rodrigo\Desktop\Solution\Metrocare.Security\bin\Debug\Metrocare.Security.dll
-C:\Users\Rodrigo\Desktop\Solution\Metrocare.Security\bin\Debug\Metrocare.Security.pdb
-C:\Users\Rodrigo\Desktop\Solution\Metrocare.Security\obj\Debug\Metrocare.Security.dll
-C:\Users\Rodrigo\Desktop\Solution\Metrocare.Security\obj\Debug\Metrocare.Security.pdb

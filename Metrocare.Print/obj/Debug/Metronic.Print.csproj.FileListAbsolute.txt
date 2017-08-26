@@ -1,5 +1,0 @@
-C:\Users\Rodrigo\Desktop\Solution\Metronic.Print\bin\Debug\Metronic.Print.dll
-C:\Users\Rodrigo\Desktop\Solution\Metronic.Print\bin\Debug\Metronic.Print.pdb
-C:\Users\Rodrigo\Desktop\Solution\Metronic.Print\obj\Debug\Metronic.Print.csprojResolveAssemblyReference.cache
-C:\Users\Rodrigo\Desktop\Solution\Metronic.Print\obj\Debug\Metronic.Print.dll
-C:\Users\Rodrigo\Desktop\Solution\Metronic.Print\obj\Debug\Metronic.Print.pdb

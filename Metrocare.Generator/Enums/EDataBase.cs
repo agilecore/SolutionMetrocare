@@ -4,13 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Metrocare.Generator.Enums
+namespace Gerador.Enums
 {
     public enum EDataBase
-    { 
-        Oracle,
-        OleDb,
+    {
         MySql,
-        SqlServer
+        SqlServer,
+        Oracle,
+        PostGreSql,
+        MariaDB,
+        SqlLite,
+        InterBase,
+        Db2,
+        Informix
     }
 }

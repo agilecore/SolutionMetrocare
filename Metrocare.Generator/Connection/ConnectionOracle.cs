@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Configuration;
-using Oracle.DataAccess.Client;
+using System.Data.OracleClient;
 
-namespace Metrocare.Generator.Connections
+namespace Gerador.Connections
 {
     public class ConnectionOracle : IDisposable
     {
         public bool Success;
         public OracleCommand CommandSql;
         private String ErrorMessage = String.Empty;
-        private String LocalQuery = String.Empty;
-        private OracleConnection ConnectionDb;
-        private OracleDataReader Registro;
+        private String LocalQuery = String.Empty; 
+        private OracleConnection ConnectionDb;       
+        private OracleDataReader Registro;       
 
         /// <summary>
         /// Construtor desta classe onde é passado a Query a ser usada no banco e a string de conexao para se 
@@ -26,7 +26,7 @@ namespace Metrocare.Generator.Connections
         public ConnectionOracle(String Query, String LocalConnectionString)
         {
             if (LocalConnectionString == String.Empty)
-                LocalConnectionString = ConfigurationManager.ConnectionStrings["DTConnection"].ConnectionString;
+                LocalConnectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
             this.LocalQuery = Query.Replace("#", "'").Trim();
             this.ConnectionDb = new OracleConnection(LocalConnectionString);
@@ -42,8 +42,8 @@ namespace Metrocare.Generator.Connections
         /// <param name="Value">Value que o Campo da Tabela em questao ira armazenar</param>
         public void Parameter(String Name, String Value)
         {
-           // this.CommandSql.Parameters.AddWithValue(Name, Value);
-            this.CommandSql.Parameters.Add(Name, Value); // Only namespace 'Oracle.DataAccess.Client'
+            this.CommandSql.Parameters.AddWithValue(Name, Value);
+            //this.CommandSql.Parameters.Add(Name, Value); // Only namespace 'Oracle.DataAccess.Client'
         }
 
         /// <summary>

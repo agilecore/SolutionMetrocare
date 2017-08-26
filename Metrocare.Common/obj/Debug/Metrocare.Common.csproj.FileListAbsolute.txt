@@ -6,3 +6,7 @@ C:\Users\Rodrigo\Desktop\Solution\Metrocare.Common\bin\Debug\Metrocare.Common.dl
 C:\Users\Rodrigo\Desktop\Solution\Metrocare.Common\bin\Debug\Metrocare.Common.pdb
 C:\Users\Rodrigo\Desktop\Solution\Metrocare.Common\obj\Debug\Metrocare.Common.dll
 C:\Users\Rodrigo\Desktop\Solution\Metrocare.Common\obj\Debug\Metrocare.Common.pdb
+C:\Users\rodrigo.fernandes\Documents\GitHub\SolutionMetrocare\Metrocare.Common\bin\Debug\Metrocare.Common.dll
+C:\Users\rodrigo.fernandes\Documents\GitHub\SolutionMetrocare\Metrocare.Common\bin\Debug\Metrocare.Common.pdb
+C:\Users\rodrigo.fernandes\Documents\GitHub\SolutionMetrocare\Metrocare.Common\obj\Debug\Metrocare.Common.dll
+C:\Users\rodrigo.fernandes\Documents\GitHub\SolutionMetrocare\Metrocare.Common\obj\Debug\Metrocare.Common.pdb

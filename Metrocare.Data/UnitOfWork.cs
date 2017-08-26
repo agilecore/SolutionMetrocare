@@ -1,67 +1,28 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Metrocare.Common;
 using Metrocare.Data;
-using Dapper;
-using System.Data;
 
 namespace Metrocare.Data
 {
-    public class UnitOfWork : IDisposable
-    {
-        private IDbTransaction _transaction;
-        private readonly Action<UnitOfWork> _onCommit;
-        private readonly Action<UnitOfWork> _onRollback;
+    public class UnitOfWork                                                                                
+    {                                                                                                      
+        private MetrocareContext _dbContext = new MetrocareContext();  
+        public Type _type { get; set; }                                                                    
+        public Repository<TEntityType> GetRepository<TEntityType>() where TEntityType : class              
+        {                                                                                                  
+            return (new Repository<TEntityType>(this._dbContext));                                         
+        }                                                                                                  
+        public void SaveChage()                                                                            
+        {                                                                                                  
+            _dbContext.SaveChanges();                                                                      
+        }                                                                                                  
+        public void SaveChageAsync()                                                                       
+        {                                                                                                  
+            _dbContext.SaveChangesAsync();                                                                 
+        }                                                                                                  
+    }                                                                                                      
+}                                                                                                          
 
-        public UnitOfWork(IDbTransaction transaction, Action<UnitOfWork> onCommitOrRollback) : this(transaction, onCommitOrRollback, onCommitOrRollback)
-        {
-        }
-
-        public UnitOfWork(IDbTransaction transaction, Action<UnitOfWork> onCommit, Action<UnitOfWork> onRollback)
-        {
-            _transaction = transaction;
-            _onCommit = onCommit;
-            _onRollback = onRollback;
-        }
-
-        public IDbTransaction Transaction
-        {
-            get { return _transaction; }
-        }
-
-        public void SaveChanges()
-        {
-            if (_transaction == null) { throw new InvalidOperationException("This unit of work has already been saved or undone."); }
-                
-            try
-            {
-                _transaction.Commit();
-                _onCommit(this);
-            }
-            finally
-            {
-                _transaction.Dispose();
-                _transaction = null;
-            }
-        }
-
-        public void Dispose()
-        {
-            if (_transaction == null) return;
-
-            try
-            {
-                _transaction.Rollback();
-                _onRollback(this);
-            }
-            finally
-            {
-                _transaction.Dispose();
-                _transaction = null;
-            }
-        }       
-    }
-}

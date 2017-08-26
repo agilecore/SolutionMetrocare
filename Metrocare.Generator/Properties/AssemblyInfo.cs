@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Metrocare")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Gerador.v1")]
+[assembly: AssemblyDescription("Gerador.v1")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("")]
+[assembly: AssemblyCompany("Gerador.v1")]
+[assembly: AssemblyProduct("Gerador.v1")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b94b0a7c-9ff4-48fd-a315-daaa8b3c7320")]
+[assembly: Guid("bc649012-0d0a-437f-8d3f-9041a30845e3")]
 
 // Version information for an assembly consists of the following four values:
 //

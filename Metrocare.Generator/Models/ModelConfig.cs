@@ -4,16 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Metrocare.Generator.Models
+namespace Gerador.Models
 {
     public sealed class ModelConfig
     {
-        public String ClassName { get; set; }
-        public String NameSpaceDto { get; set; }
-        public String NameSpaceMapper { get; set; }
-        public String NameSpaceDomain { get; set; }
-        public String NameSpaceService { get; set; }
-        public Boolean CreateDomain { get; set; }
+        public string ClassName { get; set; }
+        public string NameSpaceDto { get; set; }
+        public string NameSpaceMapper { get; set; }
+        public string NameSpaceDomain { get; set; }
+        public string NameSpaceService { get; set; }
         public Boolean CreateController { get; set; }
     }
 }

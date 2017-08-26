@@ -14,3 +14,15 @@ C:\Users\Rodrigo\Desktop\Solution\Metrocare.Data\bin\Debug\Metrocare.Common.pdb
 C:\Users\Rodrigo\Desktop\Solution\Metrocare.Data\obj\Debug\Metrocare.Data.csprojResolveAssemblyReference.cache
 C:\Users\Rodrigo\Desktop\Solution\Metrocare.Data\obj\Debug\Metrocare.Data.dll
 C:\Users\Rodrigo\Desktop\Solution\Metrocare.Data\obj\Debug\Metrocare.Data.pdb
+C:\Users\rodrigo.fernandes\Documents\GitHub\SolutionMetrocare\Metrocare.Data\bin\Debug\Metrocare.Data.dll.config
+C:\Users\rodrigo.fernandes\Documents\GitHub\SolutionMetrocare\Metrocare.Data\bin\Debug\Metrocare.Data.dll
+C:\Users\rodrigo.fernandes\Documents\GitHub\SolutionMetrocare\Metrocare.Data\bin\Debug\Metrocare.Data.pdb
+C:\Users\rodrigo.fernandes\Documents\GitHub\SolutionMetrocare\Metrocare.Data\bin\Debug\EntityFramework.dll
+C:\Users\rodrigo.fernandes\Documents\GitHub\SolutionMetrocare\Metrocare.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\rodrigo.fernandes\Documents\GitHub\SolutionMetrocare\Metrocare.Data\bin\Debug\Metrocare.Common.dll
+C:\Users\rodrigo.fernandes\Documents\GitHub\SolutionMetrocare\Metrocare.Data\bin\Debug\Metrocare.Common.pdb
+C:\Users\rodrigo.fernandes\Documents\GitHub\SolutionMetrocare\Metrocare.Data\bin\Debug\EntityFramework.xml
+C:\Users\rodrigo.fernandes\Documents\GitHub\SolutionMetrocare\Metrocare.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\rodrigo.fernandes\Documents\GitHub\SolutionMetrocare\Metrocare.Data\obj\Debug\Metrocare.Data.csprojResolveAssemblyReference.cache
+C:\Users\rodrigo.fernandes\Documents\GitHub\SolutionMetrocare\Metrocare.Data\obj\Debug\Metrocare.Data.dll
+C:\Users\rodrigo.fernandes\Documents\GitHub\SolutionMetrocare\Metrocare.Data\obj\Debug\Metrocare.Data.pdb

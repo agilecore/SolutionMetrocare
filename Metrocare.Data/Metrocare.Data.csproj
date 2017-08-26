@@ -34,7 +34,16 @@
       <HintPath>..\Metronic.Security\packages\Dapper.1.50.2\lib\net45\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,23 +53,56 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connections\Factory.cs" />
-    <Compile Include="ConcelhoProfissionalRep.cs" />
-    <Compile Include="BeneficiarioRep.cs" />
-    <Compile Include="PrestadorRep.cs" />
-    <Compile Include="DependenteRep.cs" />
-    <Compile Include="CredenciadoRep.cs" />
-    <Compile Include="EspecialidadeRep.cs" />
-    <Compile Include="Enums\EBancoDeDados.cs" />
-    <Compile Include="Enums\ETipoDeComando.cs" />
-    <Compile Include="Interfaces\IConnectionFactory.cs" />
-    <Compile Include="Interfaces\IDbConnection.cs" />
-    <Compile Include="Interfaces\IGenericRepository.cs" />
-    <Compile Include="LoginRep.cs" />
-    <Compile Include="LogRep.cs" />
+    <Compile Include="AppContext\DbContext.cs" />
+    <Compile Include="Interface\IRepository.cs" />
+    <Compile Include="Mapper\Agenda\AgendaMapper.cs" />
+    <Compile Include="Mapper\Alta\AltaMapper.cs" />
+    <Compile Include="Mapper\Alteracao\AlteracaoMapper.cs" />
+    <Compile Include="Mapper\Atendimento\AtendimentoMapper.cs" />
+    <Compile Include="Mapper\Beneficiario\BeneficiarioMapper.cs" />
+    <Compile Include="Mapper\CaraterAtendimento\CaraterAtendimentoMapper.cs" />
+    <Compile Include="Mapper\Carteira\CarteiraMapper.cs" />
+    <Compile Include="Mapper\Cbo\CboMapper.cs" />
+    <Compile Include="Mapper\ConcelhoProfissional\ConcelhoProfissionalMapper.cs" />
+    <Compile Include="Mapper\Contrato\ContratoMapper.cs" />
+    <Compile Include="Mapper\CredenciadoEndereco\CredenciadoEnderecoMapper.cs" />
+    <Compile Include="Mapper\CredenciadoEspecialidade\CredenciadoEspecialidadeMapper.cs" />
+    <Compile Include="Mapper\Credenciado\CredenciadoMapper.cs" />
+    <Compile Include="Mapper\Dependente\DependenteMapper.cs" />
+    <Compile Include="Mapper\Dia\DiaMapper.cs" />
+    <Compile Include="Mapper\Especialidade\EspecialidadeMapper.cs" />
+    <Compile Include="Mapper\GlosasMensagens\GlosasMensagensMapper.cs" />
+    <Compile Include="Mapper\GrauParentesco\GrauParentescoMapper.cs" />
+    <Compile Include="Mapper\GrauParticipacao\GrauParticipacaoMapper.cs" />
+    <Compile Include="Mapper\IndicadorAcidente\IndicadorAcidenteMapper.cs" />
+    <Compile Include="Mapper\LogAcesso\LogAcessoMapper.cs" />
+    <Compile Include="Mapper\LogBeneficiario\LogBeneficiarioMapper.cs" />
+    <Compile Include="Mapper\LogContrato\LogContratoMapper.cs" />
+    <Compile Include="Mapper\LogCredenciado\LogCredenciadoMapper.cs" />
+    <Compile Include="Mapper\LogDependente\LogDependenteMapper.cs" />
+    <Compile Include="Mapper\LogPlano\LogPlanoMapper.cs" />
+    <Compile Include="Mapper\LogPrestador\LogPrestadorMapper.cs" />
+    <Compile Include="Mapper\Periodo\PeriodoMapper.cs" />
+    <Compile Include="Mapper\PlanoCategoria\PlanoCategoriaMapper.cs" />
+    <Compile Include="Mapper\PlanoInativacao\PlanoInativacaoMapper.cs" />
+    <Compile Include="Mapper\PlanoTabela\PlanoTabelaMapper.cs" />
+    <Compile Include="Mapper\Plano\PlanoMapper.cs" />
+    <Compile Include="Mapper\Prestador\PrestadorMapper.cs" />
+    <Compile Include="Mapper\TabelaProced\TabelaProcedMapper.cs" />
+    <Compile Include="Mapper\TecnicaUtilizada\TecnicaUtilizadaMapper.cs" />
+    <Compile Include="Mapper\TempoDoenca\TempoDoencaMapper.cs" />
+    <Compile Include="Mapper\TipoAcomodacao\TipoAcomodacaoMapper.cs" />
+    <Compile Include="Mapper\TipoAtendimento\TipoAtendimentoMapper.cs" />
+    <Compile Include="Mapper\TipoDoenca\TipoDoencaMapper.cs" />
+    <Compile Include="Mapper\TipoGuiaSaida\TipoGuiaSaidaMapper.cs" />
+    <Compile Include="Mapper\TipoGuia\TipoGuiaMapper.cs" />
+    <Compile Include="Mapper\TipoInternacao\TipoInternacaoMapper.cs" />
+    <Compile Include="Mapper\Tuss\TussMapper.cs" />
+    <Compile Include="Mapper\UnidadeTempo\UnidadeTempoMapper.cs" />
+    <Compile Include="Mapper\Usuario\UsuarioMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Repository.cs" />
     <Compile Include="UnitOfWork.cs" />
-    <Compile Include="UsuarioRep.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Metrocare.Common\Metrocare.Common.csproj">
@@ -69,8 +111,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

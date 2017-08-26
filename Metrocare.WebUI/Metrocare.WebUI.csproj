@@ -21,6 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -123,27 +124,52 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\AgendamentoController.cs" />
-    <Compile Include="Controllers\BeneficiarioController.cs" />
-    <Compile Include="Controllers\PrestadorController.cs" />
-    <Compile Include="Controllers\DependenteController.cs" />
-    <Compile Include="Controllers\PlanoController.cs" />
-    <Compile Include="Controllers\FaturamentoController.cs" />
-    <Compile Include="Controllers\CredenciadoController.cs" />
-    <Compile Include="Controllers\ExceptionController.cs" />
-    <Compile Include="Controllers\LogController.cs" />
-    <Compile Include="Controllers\DashboardController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\MenuController.cs" />
-    <Compile Include="Controllers\UsuarioController.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Filters\SessionAuthorizeAttribute.cs" />
+    <Compile Include="Controllers\Agenda\AgendaController.cs" />
+    <Compile Include="Controllers\Alta\AltaController.cs" />
+    <Compile Include="Controllers\Atendimento\AtendimentoController.cs" />
+    <Compile Include="Controllers\Base.cs" />
+    <Compile Include="Controllers\Beneficiario\BeneficiarioController.cs" />
+    <Compile Include="Controllers\CaraterAtendimento\CaraterAtendimentoController.cs" />
+    <Compile Include="Controllers\Carteira\CarteiraController.cs" />
+    <Compile Include="Controllers\ConcelhoProfissional\ConcelhoProfissionalController.cs" />
+    <Compile Include="Controllers\Contrato\ContratoController.cs" />
+    <Compile Include="Controllers\CredenciadoEndereco\CredenciadoEnderecoController.cs" />
+    <Compile Include="Controllers\CredenciadoEspecialidade\CredenciadoEspecialidadeController.cs" />
+    <Compile Include="Controllers\Credenciado\CredenciadoController.cs" />
+    <Compile Include="Controllers\Dependente\DependenteController.cs" />
+    <Compile Include="Controllers\Dia\DiaController.cs" />
+    <Compile Include="Controllers\Especialidade\EspecialidadeController.cs" />
+    <Compile Include="Controllers\GlosasMensagens\GlosasMensagensController.cs" />
+    <Compile Include="Controllers\GrauParentesco\GrauParentescoController.cs" />
+    <Compile Include="Controllers\GrauParticipacao\GrauParticipacaoController.cs" />
+    <Compile Include="Controllers\IndicadorAcidente\IndicadorAcidenteController.cs" />
+    <Compile Include="Controllers\LogAcesso\LogAcessoController.cs" />
+    <Compile Include="Controllers\LogBeneficiario\LogBeneficiarioController.cs" />
+    <Compile Include="Controllers\LogContrato\LogContratoController.cs" />
+    <Compile Include="Controllers\LogCredenciado\LogCredenciadoController.cs" />
+    <Compile Include="Controllers\LogPlano\LogPlanoController.cs" />
+    <Compile Include="Controllers\LogPrestador\LogPrestadorController.cs" />
+    <Compile Include="Controllers\Periodo\PeriodoController.cs" />
+    <Compile Include="Controllers\PlanoCategoria\PlanoCategoriaController.cs" />
+    <Compile Include="Controllers\PlanoInativacao\PlanoInativacaoController.cs" />
+    <Compile Include="Controllers\PlanoTabela\PlanoTabelaController.cs" />
+    <Compile Include="Controllers\Plano\PlanoController.cs" />
+    <Compile Include="Controllers\Prestador\PrestadorController.cs" />
+    <Compile Include="Controllers\TabelaProced\TabelaProcedController.cs" />
+    <Compile Include="Controllers\TecnicaUtilizada\TecnicaUtilizadaController.cs" />
+    <Compile Include="Controllers\TempoDoenca\TempoDoencaController.cs" />
+    <Compile Include="Controllers\TipoAcomodacao\TipoAcomodacaoController.cs" />
+    <Compile Include="Controllers\TipoAtendimento\TipoAtendimentoController.cs" />
+    <Compile Include="Controllers\TipoDoenca\TipoDoencaController.cs" />
+    <Compile Include="Controllers\TipoGuiaSaida\TipoGuiaSaidaController.cs" />
+    <Compile Include="Controllers\TipoGuia\TipoGuiaController.cs" />
+    <Compile Include="Controllers\TipoInternacao\TipoInternacaoController.cs" />
+    <Compile Include="Controllers\Tuss\TussController.cs" />
+    <Compile Include="Controllers\UnidadeTempo\UnidadeTempoController.cs" />
+    <Compile Include="Controllers\Usuario\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="HtmlHelpers\HtmlHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -4436,10 +4462,6 @@
     <ProjectReference Include="..\Metrocare.Domain\Metrocare.Domain.csproj">
       <Project>{1d1a175a-cad2-4800-8305-c4187f7ef4c5}</Project>
       <Name>Metrocare.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Metrocare.Security\Metrocare.Security.csproj">
-      <Project>{13b13054-8fda-4392-81b7-b0fbf77a596b}</Project>
-      <Name>Metrocare.Security</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

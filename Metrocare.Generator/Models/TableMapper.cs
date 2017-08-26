@@ -2,14 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Metrocare.Generator.Models
+namespace Gerador.Models
 {
-    public class TableMapper
+    public sealed class TableMapper
     {
-        public TableMapper()                       {           }
-        public String TableName                    { get; set; }
+        public TableMapper() { }
+        public string TableName { get; set; }
         public List<ColumnMapper> CollectionColumn { get; set; }
+    }
+
+    public sealed class ColumnMapper
+    {
+        public string ColumnName { get; set; }
+        public string IsNullable { get; set; }
+        public string DataType { get; set; }
+        public string MaxLenght { get; set; }
+        public string ColumnKey { get; set; }
     }
 }
