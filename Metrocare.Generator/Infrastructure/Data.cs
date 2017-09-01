@@ -558,13 +558,15 @@ namespace Gerador.Infrastructure
             return FileName;
         }
 
+
         private String CreateFileMadatory(String ClassName, String Folder)
         {
             var FullFile = String.Format(@"{0}\{1}.{2}", Folder, ClassName, "cs");
 
             if (File.Exists(FullFile))
             {
-                File.Delete(FullFile);
+                //File.Delete(FullFile);
+                using (TextWriter Writer = File.CreateText(FullFile)) { Writer.WriteLine(TextClass.ToString()); }
             }
             else
             {
